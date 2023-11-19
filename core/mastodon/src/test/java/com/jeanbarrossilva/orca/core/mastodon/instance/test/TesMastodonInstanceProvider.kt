@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.test.instance
+package com.jeanbarrossilva.orca.core.mastodon.instance.test
 
 import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.instance.InstanceProvider
@@ -13,7 +13,7 @@ import com.jeanbarrossilva.orca.core.test.TestAuthorizer
  * @param authenticationLock [AuthenticationLock] by which features can be locked or unlocked by an
  *   authentication "wall".
  */
-internal class TestHttpInstanceProvider(
+internal class TesMastodonInstanceProvider(
   private val authorizer: TestAuthorizer,
   private val authenticator: TestAuthenticator,
   private val authenticationLock: AuthenticationLock<TestAuthenticator>

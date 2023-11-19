@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http
+package com.jeanbarrossilva.orca.core.mastodon.http.client
 
 import android.util.Log
 import io.mockk.mockkStatic

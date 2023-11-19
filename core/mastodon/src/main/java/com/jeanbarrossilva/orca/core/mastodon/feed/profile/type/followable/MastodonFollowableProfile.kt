@@ -7,7 +7,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.type.followable.Follow
 import com.jeanbarrossilva.orca.core.feed.profile.type.followable.FollowableProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
-import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndPost
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndPost
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.std.imageloader.SomeImageLoader
 import com.jeanbarrossilva.orca.std.injector.Injector

@@ -1,12 +1,12 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.test
+package com.jeanbarrossilva.orca.core.mastodon.http.client.test
 
 import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.auth.actor.ActorProvider
 import com.jeanbarrossilva.orca.core.mastodon.MastodonCoreModule
-import com.jeanbarrossilva.orca.core.mastodon.http.CoreHttpClient
-import com.jeanbarrossilva.orca.core.mastodon.http.test.instance.TestHttpInstanceProvider
-import com.jeanbarrossilva.orca.core.mastodon.http.test.instance.TestMastodonInstance
+import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.instance.test.TesMastodonInstanceProvider
+import com.jeanbarrossilva.orca.core.mastodon.instance.test.TestMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.sample.auth.actor.sample
 import com.jeanbarrossilva.orca.core.sample.feed.profile.toot.content.SampleTermMuter
@@ -110,7 +110,7 @@ private fun <T : Actor> runCoreHttpClientTest(
   val instance = TestMastodonInstance(authorizer, authenticator, authenticationLock)
   val module =
     MastodonCoreModule(
-      { TestHttpInstanceProvider(authorizer, authenticator, authenticationLock) },
+      { TesMastodonInstanceProvider(authorizer, authenticator, authenticationLock) },
       { authenticationLock }
     ) {
       SampleTermMuter()

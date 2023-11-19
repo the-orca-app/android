@@ -10,7 +10,7 @@ import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPa
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.editable.MastodonEditableProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.followable.MastodonFollowableProfile
-import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

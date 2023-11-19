@@ -3,7 +3,7 @@ package com.jeanbarrossilva.orca.core.mastodon.auth.authorization
 import com.jeanbarrossilva.orca.core.instance.domain.Domain
 import com.jeanbarrossilva.orca.core.mastodon.BuildConfig
 import com.jeanbarrossilva.orca.core.mastodon.auth.authorization.MastodonDomainsProvider.provide
-import com.jeanbarrossilva.orca.core.mastodon.http.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.HttpRequest

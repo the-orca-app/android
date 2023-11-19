@@ -6,7 +6,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.account.MastodonAccount
-import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

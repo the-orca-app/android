@@ -1,6 +1,6 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.test.instance
+package com.jeanbarrossilva.orca.core.mastodon.instance.test
 
-import com.jeanbarrossilva.orca.core.mastodon.http.Logger
+import com.jeanbarrossilva.orca.core.mastodon.http.client.Logger
 
 /** [Logger] returned by [test]. */
 private val testLogger =
