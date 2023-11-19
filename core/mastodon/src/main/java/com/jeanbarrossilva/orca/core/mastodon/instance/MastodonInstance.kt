@@ -4,7 +4,7 @@ import com.jeanbarrossilva.orca.core.auth.Authenticator
 import com.jeanbarrossilva.orca.core.auth.Authorizer
 import com.jeanbarrossilva.orca.core.instance.Instance
 import com.jeanbarrossilva.orca.core.instance.domain.Domain
-import com.jeanbarrossilva.orca.core.mastodon.client.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.http.CoreHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.HttpRequest

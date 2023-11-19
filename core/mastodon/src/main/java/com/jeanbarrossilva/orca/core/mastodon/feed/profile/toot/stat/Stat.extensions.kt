@@ -2,9 +2,9 @@ package com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.stat
 
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.feed.profile.toot.stat.Stat
-import com.jeanbarrossilva.orca.core.mastodon.client.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonContext
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
+import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

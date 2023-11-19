@@ -1,8 +1,8 @@
 package com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.cache
 
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
-import com.jeanbarrossilva.orca.core.mastodon.client.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.status.MastodonStatus
+import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

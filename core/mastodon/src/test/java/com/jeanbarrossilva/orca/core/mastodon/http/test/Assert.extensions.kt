@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.client.test
+package com.jeanbarrossilva.orca.core.mastodon.http.test
 
 import assertk.Assert
 import assertk.assertThat

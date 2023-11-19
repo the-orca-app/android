@@ -2,8 +2,8 @@ package com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.stat
 
 import com.jeanbarrossilva.orca.core.feed.profile.Profile
 import com.jeanbarrossilva.orca.core.feed.profile.toot.stat.toggleable.ToggleableStat
-import com.jeanbarrossilva.orca.core.mastodon.client.authenticateAndPost
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
+import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndPost
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

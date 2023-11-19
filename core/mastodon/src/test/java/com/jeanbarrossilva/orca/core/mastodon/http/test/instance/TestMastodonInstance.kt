@@ -1,9 +1,9 @@
-package com.jeanbarrossilva.orca.core.mastodon.client.test.instance
+package com.jeanbarrossilva.orca.core.mastodon.http.test.instance
 
 import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.instance.Instance
-import com.jeanbarrossilva.orca.core.mastodon.client.CoreHttpClient
-import com.jeanbarrossilva.orca.core.mastodon.client.Logger
+import com.jeanbarrossilva.orca.core.mastodon.http.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.http.Logger
 import com.jeanbarrossilva.orca.core.mastodon.instance.MastodonInstance
 import com.jeanbarrossilva.orca.core.sample.test.instance.sample
 import com.jeanbarrossilva.orca.core.test.TestAuthenticationLock

@@ -1,11 +1,11 @@
-package com.jeanbarrossilva.orca.core.mastodon.client
+package com.jeanbarrossilva.orca.core.mastodon.http
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isTrue
-import com.jeanbarrossilva.orca.core.mastodon.client.test.assertThatRequestAuthorizationHeaderOf
-import com.jeanbarrossilva.orca.core.mastodon.client.test.runAuthenticatedTest
-import com.jeanbarrossilva.orca.core.mastodon.client.test.runUnauthenticatedTest
+import com.jeanbarrossilva.orca.core.mastodon.http.test.assertThatRequestAuthorizationHeaderOf
+import com.jeanbarrossilva.orca.core.mastodon.http.test.runAuthenticatedTest
+import com.jeanbarrossilva.orca.core.mastodon.http.test.runUnauthenticatedTest
 import com.jeanbarrossilva.orca.core.sample.test.instance.SampleInstanceTestRule
 import io.ktor.http.parametersOf
 import kotlin.test.Test

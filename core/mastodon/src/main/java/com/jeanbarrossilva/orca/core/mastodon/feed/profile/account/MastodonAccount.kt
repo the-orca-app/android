@@ -5,12 +5,12 @@ import com.jeanbarrossilva.orca.core.feed.profile.Profile
 import com.jeanbarrossilva.orca.core.feed.profile.account.Account
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Author
 import com.jeanbarrossilva.orca.core.feed.profile.type.followable.Follow
-import com.jeanbarrossilva.orca.core.mastodon.client.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.editable.MastodonEditableProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.followable.MastodonFollowableProfile
+import com.jeanbarrossilva.orca.core.mastodon.http.authenticateAndGet
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider

@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.client
+package com.jeanbarrossilva.orca.core.mastodon.http
 
 import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
