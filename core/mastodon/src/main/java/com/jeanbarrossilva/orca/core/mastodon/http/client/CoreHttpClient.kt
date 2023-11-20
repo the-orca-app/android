@@ -69,7 +69,7 @@ fun CoreHttpClient(config: HttpClientConfig<CIOEngineConfig>.() -> Unit): HttpCl
  * @param config Additional configuration to be done on the [HttpClient].
  */
 @Suppress("FunctionName")
-fun <EC : HttpClientEngineConfig, CC : HttpClientConfig<EC>> CoreHttpClient(
+internal fun <EC : HttpClientEngineConfig, CC : HttpClientConfig<EC>> CoreHttpClient(
   engineFactory: HttpClientEngineFactory<EC>,
   logger: Logger,
   config: CC.() -> Unit = {}

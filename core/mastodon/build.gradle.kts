@@ -41,6 +41,7 @@ dependencies {
   implementation(project(":platform:ui"))
   implementation(libs.android.browser)
   implementation(libs.android.room.ktx)
+  implementation(libs.kotlin.reflect)
   implementation(libs.ktor.client.cio)
   implementation(libs.ktor.client.core)
   implementation(libs.ktor.client.contentNegotiation)
