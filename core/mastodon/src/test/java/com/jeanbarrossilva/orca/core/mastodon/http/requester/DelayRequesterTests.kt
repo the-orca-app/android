@@ -2,7 +2,6 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequester
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.engine.mock.respondOk
 import kotlin.test.Test
@@ -12,7 +11,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 
 internal class DelayRequesterTests {
-  @get:Rule val requesterRule = TestRequesterTestRule(TestRequester().delayedBy(2.minutes))
+  @get:Rule val requesterRule = TestRequesterTestRule().delayedBy(2.minutes)
 
   @Test
   fun delaysGet() {

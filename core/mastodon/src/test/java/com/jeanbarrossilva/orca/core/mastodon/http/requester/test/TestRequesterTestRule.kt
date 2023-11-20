@@ -56,6 +56,9 @@ internal class TestRequesterTestRule(
    * @param delay [Duration] of the delay.
    */
   fun delayedBy(delay: Duration): TestRequesterTestRule {
-    return apply { requester = DelayedRequester(delegate = requester, delay) }
+    return apply {
+      @Suppress("DEPRECATION")
+      requester = requester.delayedBy(delay)
+    }
   }
 }
