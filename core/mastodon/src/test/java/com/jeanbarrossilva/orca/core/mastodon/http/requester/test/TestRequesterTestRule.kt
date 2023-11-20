@@ -18,7 +18,7 @@ internal class TestRequesterTestRule(
   var requester = initialRequester
     private set
 
-  override fun after() {
+  public override fun after() {
     requester = initialRequester
   }
 
