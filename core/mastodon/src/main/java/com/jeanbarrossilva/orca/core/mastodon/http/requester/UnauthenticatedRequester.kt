@@ -12,6 +12,12 @@ import io.ktor.http.content.PartData
 
 /** [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor]. */
 class UnauthenticatedRequester internal constructor(override val client: HttpClient) : Requester() {
+  /**
+   * [AuthenticatedRequester]s that have been created, associated to their
+   * [lock][AuthenticatedRequester.lock].
+   */
+  private val authenticated = hashMapOf<SomeAuthenticationLock, AuthenticatedRequester>()
+
   override suspend fun onGet(
     route: String,
     parameters: Parameters,
@@ -36,13 +42,18 @@ class UnauthenticatedRequester internal constructor(override val client: HttpCli
   }
 
   /**
-   * Returns a version of this [Requester] that sends requests as an
+   * Creates or retrieves a version of this [Requester] that sends requests as an
    * [authenticated][Actor.Authenticated] [Actor].
    *
    * @param lock [AuthenticationLock] by which authentication will be required.
    * @see AuthenticatedRequester
    */
   fun authenticated(lock: SomeAuthenticationLock): Requester {
-    return AuthenticatedRequester(lock, client)
+    return authenticated.getOrPut(lock) { AuthenticatedRequester(lock, client) }
+  }
+
+  /** Removes all [AuthenticatedRequester]s that have been created. */
+  internal fun clear() {
+    authenticated.clear()
   }
 }

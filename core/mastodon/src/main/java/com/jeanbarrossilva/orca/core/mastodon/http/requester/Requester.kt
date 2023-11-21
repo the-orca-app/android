@@ -186,6 +186,7 @@ abstract class Requester internal constructor() {
 
     /** Removes all created [Requester]s. */
     fun clear() {
+      creations.values.forEach(UnauthenticatedRequester::clear)
       creations.clear()
     }
   }
