@@ -9,6 +9,7 @@ import assertk.assertions.isTrue
 import assertk.assertions.prop
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.DelayedRequester
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.use
 import io.ktor.client.call.body
 import io.ktor.client.engine.mock.respondBadRequest
 import io.ktor.client.engine.mock.respondOk
@@ -16,8 +17,9 @@ import io.ktor.http.HttpStatusCode
 import kotlin.test.Test
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 
@@ -26,7 +28,7 @@ internal class TestRequesterTests {
 
   @Test
   fun requestIsOngoing() {
-    runTest {
+    runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
       with(
         requesterRule
           .on(coroutineContext)
@@ -34,8 +36,7 @@ internal class TestRequesterTests {
           .delayedBy(Duration.INFINITE)
           .requester
       ) {
-        coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) { get<String>("api/v1") }
-        assertThat(isRequestOngoing("api/v1")).isTrue()
+        launch { get<String>("api/v1") }.use { assertThat(isRequestOngoing("api/v1")).isTrue() }
       }
     }
   }
