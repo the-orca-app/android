@@ -2,14 +2,15 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.engine.mock.respondOk
 import io.ktor.http.HttpStatusCode
 import kotlin.test.Test
 import kotlin.time.Duration
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
@@ -36,10 +37,48 @@ internal class RequesterTests {
   @Test
   fun resumes() {
     runTest {
-      with(requesterRule.delayedBy(Duration.INFINITE).requester) {
-        coroutineScope.launch { get<String>("api/v1") }.cancelAndJoin()
+      with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
+        coroutineScope
+          .launch(start = CoroutineStart.UNDISPATCHED) { get<String>("api/v1") }
+          .cancelAndJoin()
         resume()
-        assertThat(coroutineScope.isActive).isTrue()
+        assertThat(isRequestOngoing("api/v1")).isTrue()
+      }
+    }
+  }
+
+  @Test
+  fun doesNotResumeWhenRequestHasBeenCancelled() {
+    runTest {
+      with(
+        requesterRule
+          .on(coroutineContext)
+          .respond { respondOk("🚻") }
+          .delayedBy(Duration.INFINITE)
+          .requester
+      ) {
+        coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) { get<String>("api/v1") }
+        cancel("api/v1")
+        resume()
+        assertThat(isRequestOngoing("api/v1")).isFalse()
+      }
+    }
+  }
+
+  @Test
+  fun cancels() {
+    runTest {
+      with(
+        requesterRule
+          .on(coroutineContext)
+          .respond { respondOk("🐱") }
+          .delayedBy(Duration.INFINITE)
+          .requester
+      ) {
+        coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) { get<String>("api/v1") }
+        coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) { post("api/v2") }
+        cancel("api/v2")
+        assertThat(isRequestOngoing("api/v2")).isFalse()
       }
     }
   }

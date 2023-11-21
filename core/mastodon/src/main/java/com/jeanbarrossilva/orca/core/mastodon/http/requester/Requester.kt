@@ -14,26 +14,40 @@ import io.ktor.http.content.PartData
 import kotlin.reflect.KClass
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.job
 
 /**
- * Manages the sending, continuity and repetition of asynchronous HTTP requests.
+ * Manages the sending, repetition, cancellation and continuity of asynchronous HTTP requests.
  *
  * @see Request
  * @see Request.Get
  * @see Request.Post
  */
 internal abstract class Requester {
+  /** [CoroutineScope] in which the requests are performed. */
+  protected open val coroutineScope = CoroutineScope(Dispatchers.IO)
+
+  /**
+   * Requests that are currently being performed, associated to the route to which they were sent.
+   */
+  protected val ongoing = hashMapOf<String, Job>()
+
   /** Requests that have been interrupted unexpectedly and are retained for later execution. */
   protected open val retained = hashSetOf<Request>()
 
-  /** [CoroutineScope] in which the requests are performed. */
-  open val coroutineScope = CoroutineScope(Dispatchers.IO)
-
   /** [CoreHttpClient] to which requests are sent. */
   abstract val client: HttpClient
+
+  /**
+   * [CancellationException] that denotes that an operation was intentionally interrupted by the
+   * user. Indicates, overall, that the request that threw this shouldn't be retained for later
+   * execution.
+   */
+  private class UnretainableCancellationException : CancellationException()
 
   /**
    * [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor].
@@ -97,7 +111,7 @@ internal abstract class Requester {
     return coroutineScope
       .async { onGet(route, resourceClass) }
       .retainOnCancellation { Request.Get(route, resourceClass) }
-      .await()
+      .ongoing(route, Deferred<T>::await)
   }
 
   /**
@@ -110,7 +124,7 @@ internal abstract class Requester {
     return coroutineScope
       .async { onPost(route, form) }
       .retainOnCancellation { Request.Post(route, form) }
-      .await()
+      .ongoing(route, Deferred<HttpResponse>::await)
   }
 
   /**
@@ -120,6 +134,18 @@ internal abstract class Requester {
    */
   suspend fun resume() {
     retained.forEach { it.sendTo(this) }
+  }
+
+  /**
+   * Cancels the ongoing request sent to the given [route].
+   *
+   * @param route Path to which the request was sent.
+   */
+  fun cancel(route: String) {
+    if (route in ongoing) {
+      coroutineScope.coroutineContext.job.cancel(UnretainableCancellationException())
+      ongoing.remove(route)
+    }
   }
 
   /**
@@ -147,11 +173,24 @@ internal abstract class Requester {
    */
   private fun <T : Job> T.retainOnCancellation(request: () -> Request): T {
     invokeOnCompletion {
-      if (it is CancellationException) {
+      val isRetainable = it is CancellationException && it !is UnretainableCancellationException
+      if (isRetainable) {
         retained.add(request())
       }
     }
     return this
+  }
+
+  /**
+   * Marks this [Job] as that of an ongoing request before the [action] is run and unmarks it as
+   * such after it's finished executing.
+   *
+   * @param route Path to which the request is being sent.
+   * @param action Operation to be run when this [Job] is considered to be ongoing.
+   */
+  private suspend fun <I : Job, O> I.ongoing(route: String, action: suspend I.() -> O): O {
+    ongoing[route] = this
+    return action().also { ongoing.remove(route) }
   }
 
   companion object {

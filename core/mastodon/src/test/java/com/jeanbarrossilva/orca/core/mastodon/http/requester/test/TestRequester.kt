@@ -40,7 +40,7 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
 
   public override val retained = super.retained
 
-  final override var coroutineScope = super.coroutineScope
+  public final override var coroutineScope = super.coroutineScope
     private set
 
   override val client: HttpClient =
@@ -61,6 +61,15 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
 
   override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
     return delegate.post(route, form)
+  }
+
+  /**
+   * Whether the request sent to the given [route] is currently ongoing.
+   *
+   * @param route Path to which the request whose status will be checked was sent.
+   */
+  fun isRequestOngoing(route: String): Boolean {
+    return route in ongoing
   }
 
   /**
