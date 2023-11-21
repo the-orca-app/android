@@ -11,7 +11,6 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMessageBuilder
 import io.ktor.http.content.PartData
-import kotlin.reflect.KClass
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -53,8 +52,8 @@ internal abstract class Requester {
    * [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor].
    */
   open class Unauthenticated(override val client: HttpClient) : Requester() {
-    override suspend fun <T> onGet(route: String, resourceClass: KClass<T & Any>): T {
-      return client.get(route).body(resourceClass)
+    override suspend fun onGet(route: String): HttpResponse {
+      return client.get(route)
     }
 
     override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
@@ -71,8 +70,8 @@ internal abstract class Requester {
       return object : Requester() {
         override val client = this@Unauthenticated.client
 
-        override suspend fun <T> onGet(route: String, resourceClass: KClass<T & Any>): T {
-          return client.get(route) { authenticate() }.body(resourceClass)
+        override suspend fun onGet(route: String): HttpResponse {
+          return client.get(route) { authenticate() }
         }
 
         override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
@@ -93,25 +92,13 @@ internal abstract class Requester {
   /**
    * Sends a GET request to the [route].
    *
-   * @param T Resource to be obtained.
    * @param route [String] that's the path for the resource to be obtained.
    */
-  suspend inline fun <reified T : Any> get(route: String): T {
-    return get(route, T::class)
-  }
-
-  /**
-   * Sends a GET request to the [route].
-   *
-   * @param T Resource to be obtained.
-   * @param route [String] that's the path for the resource to be obtained.
-   * @param resourceClass [KClass] of the resource to be obtained.
-   */
-  suspend fun <T> get(route: String, resourceClass: KClass<T & Any>): T {
+  suspend fun get(route: String): HttpResponse {
     return coroutineScope
-      .async { onGet(route, resourceClass) }
-      .retainOnCancellation { Request.Get(route, resourceClass) }
-      .ongoing(route, Deferred<T>::await)
+      .async { onGet(route) }
+      .retainOnCancellation { Request.Get(route) }
+      .ongoing(route, Deferred<HttpResponse>::await)
   }
 
   /**
@@ -151,11 +138,9 @@ internal abstract class Requester {
   /**
    * Callback run whenever a GET request is sent to the [route].
    *
-   * @param T Resource to be obtained.
    * @param route [String] that's the path for the resource to be obtained.
-   * @param resourceClass [KClass] of the resource to be obtained.
    */
-  protected abstract suspend fun <T> onGet(route: String, resourceClass: KClass<T & Any>): T
+  protected abstract suspend fun onGet(route: String): HttpResponse
 
   /**
    * Callback run whenever a POST request is sent to the [route].

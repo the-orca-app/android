@@ -5,6 +5,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
+import io.ktor.client.call.body
 import io.ktor.client.engine.mock.respondOk
 import io.ktor.http.HttpStatusCode
 import kotlin.test.Test
@@ -22,7 +23,7 @@ internal class RequesterTests {
   @Test
   fun gets() {
     runTest {
-      assertThat(requesterRule.respond { respondOk("✨") }.requester.get<String>("api/v1"))
+      assertThat(requesterRule.respond { respondOk("✨") }.requester.get("api/v1").body<String>())
         .isEqualTo("✨")
     }
   }
@@ -39,7 +40,7 @@ internal class RequesterTests {
   fun resumes() {
     runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
       with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
-        launch { get<String>("api/v1") }.cancelAndJoin()
+        launch { get("api/v1") }.cancelAndJoin()
         resume()
         assertThat(isRequestOngoing("api/v1")).isTrue()
       }
@@ -49,14 +50,8 @@ internal class RequesterTests {
   @Test
   fun doesNotResumeWhenRequestHasBeenCancelled() {
     runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
-      with(
-        requesterRule
-          .on(coroutineContext)
-          .respond { respondOk("🚻") }
-          .delayedBy(Duration.INFINITE)
-          .requester
-      ) {
-        launch { get<String>("api/v1") }
+      with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
+        launch { get("api/v1") }
         cancel("api/v1")
         resume()
         assertThat(isRequestOngoing("api/v1")).isFalse()
@@ -67,14 +62,8 @@ internal class RequesterTests {
   @Test
   fun cancels() {
     runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
-      with(
-        requesterRule
-          .on(coroutineContext)
-          .respond { respondOk("🐱") }
-          .delayedBy(Duration.INFINITE)
-          .requester
-      ) {
-        launch { get<String>("api/v1") }
+      with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
+        launch { get("api/v1") }
         launch { post("api/v2") }
         cancel("api/v2")
         assertThat(isRequestOngoing("api/v2")).isFalse()

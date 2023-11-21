@@ -2,7 +2,6 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester.test
 
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.content.PartData
-import kotlin.reflect.KClass
 import kotlin.time.Duration
 import kotlinx.coroutines.delay
 
@@ -17,9 +16,9 @@ internal class DelayedRequester(val delegate: SomeTestRequester, val delay: Dura
   override val retained = delegate.retained
   override val client = delegate.client
 
-  override suspend fun <T> onGet(route: String, resourceClass: KClass<T & Any>): T {
+  override suspend fun onGet(route: String): HttpResponse {
     delay()
-    return delegate.get(route, resourceClass)
+    return delegate.get(route)
   }
 
   override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {

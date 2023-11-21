@@ -16,7 +16,6 @@ import io.ktor.client.request.HttpResponseData
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.content.PartData
 import kotlin.coroutines.CoroutineContext
-import kotlin.reflect.KClass
 import kotlin.time.Duration
 import kotlinx.coroutines.plus
 
@@ -55,8 +54,8 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
 
   private val delegate by lazy { through(client) }
 
-  override suspend fun <T> onGet(route: String, resourceClass: KClass<T & Any>): T {
-    return delegate.get(route, resourceClass)
+  override suspend fun onGet(route: String): HttpResponse {
+    return delegate.get(route)
   }
 
   override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {

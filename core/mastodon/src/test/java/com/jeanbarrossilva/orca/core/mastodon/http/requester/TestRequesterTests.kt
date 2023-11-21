@@ -29,26 +29,15 @@ internal class TestRequesterTests {
   @Test
   fun requestIsOngoing() {
     runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
-      with(
-        requesterRule
-          .on(coroutineContext)
-          .respond { respondOk("🥐") }
-          .delayedBy(Duration.INFINITE)
-          .requester
-      ) {
-        launch { get<String>("api/v1") }.use { assertThat(isRequestOngoing("api/v1")).isTrue() }
+      with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
+        launch { get("api/v1") }.use { assertThat(isRequestOngoing("api/v1")).isTrue() }
       }
     }
   }
 
   @Test
   fun requestIsNotOngoing() {
-    runTest {
-      with(requesterRule.respond { respondOk("🍞") }.requester) {
-        get<String>("api/v1")
-        assertThat(isRequestOngoing("api/v1")).isFalse()
-      }
-    }
+    runTest { with(requesterRule.requester) { assertThat(isRequestOngoing("api/v1")).isFalse() } }
   }
 
   @Test
@@ -72,7 +61,8 @@ internal class TestRequesterTests {
             .respond { respondBadRequest() }
             .respond { respondOk("👍🏽") }
             .requester
-            .get<String>("api/v1")
+            .get("api/v1")
+            .body<String>()
         )
         .isEqualTo("👍🏽")
     }

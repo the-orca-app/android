@@ -16,7 +16,7 @@ internal class DelayRequesterTests {
   @Test
   fun delaysGet() {
     runTest {
-      requesterRule.on(coroutineContext).respond { respondOk("") }.requester.get<String>("api/v1")
+      requesterRule.on(coroutineContext).respond { respondOk("") }.requester.get("api/v1")
       assertThat(@OptIn(ExperimentalCoroutinesApi::class) testScheduler.currentTime)
         .isEqualTo(2.minutes.inWholeMilliseconds)
     }
