@@ -167,15 +167,26 @@ abstract class Requester internal constructor() {
 
   companion object {
     /**
-     * Creates a [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated]
-     * [Actor] by default through the given [client].
+     * [UnauthenticatedRequester]s associated to the [HttpClient] with which they have been
+     * initially created.
+     */
+    private val creations = hashMapOf<HttpClient, UnauthenticatedRequester>()
+
+    /**
+     * Creates or retrieves a [Requester] that sends HTTP requests as an
+     * [unauthenticated][Actor.Unauthenticated] [Actor] by default through the given [client].
      *
      * @param client [CoreHttpClient] through which requests will be sent.
      * @see UnauthenticatedRequester
      * @see UnauthenticatedRequester.authenticated
      */
     fun through(client: HttpClient): UnauthenticatedRequester {
-      return UnauthenticatedRequester(client)
+      return creations.getOrPut(client) { UnauthenticatedRequester(client) }
+    }
+
+    /** Removes all created [Requester]s. */
+    fun clear() {
+      creations.clear()
     }
   }
 }

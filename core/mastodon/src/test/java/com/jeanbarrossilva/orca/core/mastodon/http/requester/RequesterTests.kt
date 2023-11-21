@@ -3,6 +3,8 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNotSameAs
+import assertk.assertions.isSameAs
 import assertk.assertions.isTrue
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.call.body
@@ -19,6 +21,21 @@ import org.junit.Rule
 
 internal class RequesterTests {
   @get:Rule val requesterRule = TestRequesterTestRule()
+
+  @Test
+  fun createsRequesterOnce() {
+    val client = requesterRule.requester.client
+    val requester = Requester.through(client)
+    assertThat(Requester.through(client)).isSameAs(requester)
+  }
+
+  @Test
+  fun clearsRequesters() {
+    val client = requesterRule.requester.client
+    val requester = Requester.through(client)
+    Requester.clear()
+    assertThat(Requester.through(client)).isNotSameAs(requester)
+  }
 
   @Test
   fun gets() {

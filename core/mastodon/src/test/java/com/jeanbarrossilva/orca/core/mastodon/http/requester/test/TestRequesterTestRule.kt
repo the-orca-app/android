@@ -1,5 +1,6 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester.test
 
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import io.ktor.client.engine.mock.MockRequestHandleScope
 import io.ktor.client.request.HttpRequestData
 import io.ktor.client.request.HttpResponseData
@@ -20,6 +21,7 @@ internal class TestRequesterTestRule(
 
   public override fun after() {
     requester = initialRequester
+    Requester.clear()
   }
 
   /**
