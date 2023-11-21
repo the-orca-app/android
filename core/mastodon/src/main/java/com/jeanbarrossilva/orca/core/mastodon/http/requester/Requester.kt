@@ -1,16 +1,10 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
-import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
-import com.jeanbarrossilva.orca.core.auth.SomeAuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import io.ktor.client.HttpClient
-import io.ktor.client.request.bearerAuth
-import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Headers
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMessageBuilder
 import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 import io.ktor.http.headersOf
@@ -50,75 +44,6 @@ abstract class Requester internal constructor() {
    * execution.
    */
   private class UnretainableCancellationException : CancellationException()
-
-  /**
-   * [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor].
-   */
-  class Unauthenticated internal constructor(override val client: HttpClient) : Requester() {
-    override suspend fun onGet(
-      route: String,
-      parameters: Parameters,
-      headers: Headers
-    ): HttpResponse {
-      return client.get(route) {
-        parameters(parameters)
-        this.headers.appendAll(headers)
-      }
-    }
-
-    override suspend fun onPost(
-      route: String,
-      parameters: Parameters,
-      headers: Headers,
-      form: List<PartData>
-    ): HttpResponse {
-      return client.post(route, form) {
-        parameters(parameters)
-        this.headers.appendAll(headers)
-      }
-    }
-
-    /**
-     * Returns a version of this [Requester] that sends requests as an
-     * [authenticated][Actor.Authenticated] [Actor].
-     *
-     * @param lock [AuthenticationLock] by which authentication will be required.
-     */
-    fun authenticated(lock: SomeAuthenticationLock): Requester {
-      return object : Requester() {
-        override val client = this@Unauthenticated.client
-
-        override suspend fun onGet(
-          route: String,
-          parameters: Parameters,
-          headers: Headers
-        ): HttpResponse {
-          return client.get(route) { authenticate() }
-        }
-
-        override suspend fun onPost(
-          route: String,
-          parameters: Parameters,
-          headers: Headers,
-          form: List<PartData>
-        ): HttpResponse {
-          return client.post(route, form) {
-            parameters(parameters)
-            this.headers.appendAll(headers)
-            authenticate()
-          }
-        }
-
-        /**
-         * Provides the [authenticated][Actor.Authenticated] [Actor]'s access token to the
-         * [Authorization][HttpHeaders.Authorization] header through the [lock].
-         */
-        private suspend fun HttpMessageBuilder.authenticate() {
-          lock.requestUnlock { bearerAuth(it.accessToken) }
-        }
-      }
-    }
-  }
 
   /**
    * Sends a GET request to the [route].
@@ -246,11 +171,11 @@ abstract class Requester internal constructor() {
      * [Actor] by default through the given [client].
      *
      * @param client [CoreHttpClient] through which requests will be sent.
-     * @see Unauthenticated
-     * @see Unauthenticated.authenticated
+     * @see UnauthenticatedRequester
+     * @see UnauthenticatedRequester.authenticated
      */
-    fun through(client: HttpClient): Unauthenticated {
-      return Unauthenticated(client)
+    fun through(client: HttpClient): UnauthenticatedRequester {
+      return UnauthenticatedRequester(client)
     }
   }
 }
