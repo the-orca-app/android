@@ -5,7 +5,7 @@ import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 
 /** Anatomy of an HTTP request made by the [Requester]. */
-sealed class Request() {
+sealed class Request {
   /** Path to which this [Request] was made. */
   internal abstract val route: String
 
@@ -16,7 +16,7 @@ sealed class Request() {
   internal abstract val headers: Headers
 
   /** GET HTTP request. */
-  data class Get(
+  internal data class Get(
     override val route: String,
     override val parameters: Parameters,
     override val headers: Headers
@@ -31,7 +31,7 @@ sealed class Request() {
    *
    * @param form Multipart form data.
    */
-  data class Post(
+  internal data class Post(
     override val route: String,
     override val parameters: Parameters,
     override val headers: Headers,
