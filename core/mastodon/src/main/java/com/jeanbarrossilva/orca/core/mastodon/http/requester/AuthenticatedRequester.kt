@@ -4,23 +4,30 @@ import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.SomeAuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import io.ktor.client.HttpClient
+import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMessageBuilder
 import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 
-/** [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor]. */
-class UnauthenticatedRequester internal constructor(override val client: HttpClient) : Requester() {
+/**
+ * [Requester] that sends HTTP requests as an [authenticated][Actor.Authenticated] [Actor].
+ *
+ * @param lock [AuthenticationLock] by which authentication will be required.
+ */
+internal class AuthenticatedRequester(
+  private val lock: SomeAuthenticationLock,
+  override val client: HttpClient
+) : Requester() {
   override suspend fun onGet(
     route: String,
     parameters: Parameters,
     headers: Headers
   ): HttpResponse {
-    return client.get(route) {
-      parameters(parameters)
-      this.headers.appendAll(headers)
-    }
+    return client.get(route) { authenticate() }
   }
 
   override suspend fun onPost(
@@ -32,17 +39,15 @@ class UnauthenticatedRequester internal constructor(override val client: HttpCli
     return client.post(route, form) {
       parameters(parameters)
       this.headers.appendAll(headers)
+      authenticate()
     }
   }
 
   /**
-   * Returns a version of this [Requester] that sends requests as an
-   * [authenticated][Actor.Authenticated] [Actor].
-   *
-   * @param lock [AuthenticationLock] by which authentication will be required.
-   * @see AuthenticatedRequester
+   * Provides the [authenticated][Actor.Authenticated] [Actor]'s access token to the
+   * [Authorization][HttpHeaders.Authorization] header through the [lock].
    */
-  fun authenticated(lock: SomeAuthenticationLock): Requester {
-    return AuthenticatedRequester(lock, client)
+  private suspend fun HttpMessageBuilder.authenticate() {
+    lock.requestUnlock { bearerAuth(it.accessToken) }
   }
 }
