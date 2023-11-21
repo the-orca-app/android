@@ -6,7 +6,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.account.MastodonAccount
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -14,7 +14,7 @@ import com.jeanbarrossilva.orca.platform.cache.Fetcher
 import com.jeanbarrossilva.orca.std.imageloader.ImageLoader
 import com.jeanbarrossilva.orca.std.injector.Injector
 import io.ktor.client.call.body
-import io.ktor.client.request.parameter
+import io.ktor.http.parametersOf
 import java.net.URL
 
 /**
@@ -32,8 +32,9 @@ internal class MastodonProfileSearchResultsFetcher(
 ) : Fetcher<List<ProfileSearchResult>>() {
   override suspend fun onFetch(key: String): List<ProfileSearchResult> {
     return (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-      .client
-      .authenticateAndGet("/api/v1/accounts/search") { parameter("q", key) }
+      .requester
+      .authenticated(authenticationLock)
+      .get("/api/v1/accounts/search", parametersOf("q", key))
       .body<List<MastodonAccount>>()
       .map { it.toProfile(avatarLoaderProvider, tootPaginatorProvider).toProfileSearchResult() }
   }

@@ -7,7 +7,6 @@ import com.jeanbarrossilva.orca.core.auth.actor.ActorProvider
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.feed.profile.toot.content.TermMuter
 import com.jeanbarrossilva.orca.core.instance.InstanceProvider
-import com.jeanbarrossilva.orca.core.instance.SomeInstance
 import com.jeanbarrossilva.orca.core.instance.domain.Domain
 import com.jeanbarrossilva.orca.core.mastodon.auth.authentication.MastodonAuthenticator
 import com.jeanbarrossilva.orca.core.mastodon.auth.authorization.MastodonAuthorizer
@@ -39,7 +38,7 @@ class MastodonInstanceProvider(
   private val termMuter: TermMuter,
   private val imageLoaderProvider: ImageLoader.Provider<URL>
 ) : InstanceProvider {
-  override fun provide(): SomeInstance {
+  override fun provide(): ContextualMastodonInstance {
     return ContextualMastodonInstance(
       context,
       MastodonAuthorizationViewModel.getInstanceDomain(context),

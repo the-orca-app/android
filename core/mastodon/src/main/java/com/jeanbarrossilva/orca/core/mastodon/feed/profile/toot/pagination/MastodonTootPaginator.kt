@@ -2,8 +2,8 @@ package com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.pagination
 
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.status.MastodonStatus
-import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -41,14 +41,17 @@ internal abstract class MastodonTootPaginator {
       .map { it == 0 }
       .associateWith { lastResponse?.headers?.links?.firstOrNull()?.uri }
       .map({ (url, isRefreshing) -> isRefreshing || url == null }) { route to it.second }
-      .mapNotNull { (url, _) -> url?.let { client.authenticateAndGet(it) } }
+      .mapNotNull { (url, _) -> url?.let { requester.get(it) } }
       .onEach { lastResponse = it }
       .map { it.body<List<MastodonStatus>>() }
       .mapEach { it.toToot(imageLoaderProvider) }
 
-  /** [CoreHttpClient] through which the [HttpRequest]s will be performed. */
-  private val client
-    get() = (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance).client
+  /** [Requester] that will mediate the sending of HTTP requests. */
+  private val requester by lazy {
+    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+      .requester
+      .authenticated(authenticationLock)
+  }
 
   /**
    * Index of the page that's the current one.

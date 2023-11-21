@@ -10,7 +10,7 @@ import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPa
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.editable.MastodonEditableProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.followable.MastodonFollowableProfile
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -19,7 +19,7 @@ import com.jeanbarrossilva.orca.std.imageloader.ImageLoader
 import com.jeanbarrossilva.orca.std.injector.Injector
 import com.jeanbarrossilva.orca.std.styledstring.StyledString
 import io.ktor.client.call.body
-import io.ktor.client.request.parameter
+import io.ktor.http.parametersOf
 import java.net.URL
 import kotlinx.serialization.Serializable
 
@@ -153,8 +153,9 @@ internal data class MastodonAccount(
     val url = URL(url)
     val follow =
       (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-        .client
-        .authenticateAndGet("/api/v1/accounts/relationships") { parameter("id", id) }
+        .requester
+        .authenticated(authenticationLock)
+        .get("/api/v1/accounts/relationships", parametersOf("id", id))
         .body<List<MastodonRelationship>>()
         .first()
         .toFollow(this)

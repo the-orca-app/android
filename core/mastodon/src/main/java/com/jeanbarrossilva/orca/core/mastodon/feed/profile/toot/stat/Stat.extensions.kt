@@ -4,7 +4,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.feed.profile.toot.stat.Stat
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonContext
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -33,8 +33,9 @@ internal fun CommentStat(
     get {
       flow {
         (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-          .client
-          .authenticateAndGet("/api/v1/statuses/$id/context")
+          .requester
+          .authenticated(authenticationLock)
+          .get("/api/v1/statuses/$id/context")
           .body<MastodonContext>()
           .descendants
           .map { it.toToot(imageLoaderProvider) }

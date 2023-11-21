@@ -14,6 +14,8 @@ import io.ktor.client.engine.mock.respondBadRequest
 import io.ktor.client.request.HttpRequestData
 import io.ktor.client.request.HttpResponseData
 import io.ktor.client.statement.HttpResponse
+import io.ktor.http.Headers
+import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 import kotlin.coroutines.CoroutineContext
 import kotlin.time.Duration
@@ -54,12 +56,21 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
 
   private val delegate by lazy { through(client) }
 
-  override suspend fun onGet(route: String): HttpResponse {
-    return delegate.get(route)
+  override suspend fun onGet(
+    route: String,
+    parameters: Parameters,
+    headers: Headers
+  ): HttpResponse {
+    return delegate.get(route, parameters, headers)
   }
 
-  override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
-    return delegate.post(route, form)
+  override suspend fun onPost(
+    route: String,
+    parameters: Parameters,
+    headers: Headers,
+    form: List<PartData>
+  ): HttpResponse {
+    return delegate.post(route, parameters, headers, form)
   }
 
   /**

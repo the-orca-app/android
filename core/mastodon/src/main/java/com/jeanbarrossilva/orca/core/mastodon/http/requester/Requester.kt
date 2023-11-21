@@ -8,9 +8,12 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
+import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMessageBuilder
+import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
+import io.ktor.http.headersOf
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -26,7 +29,7 @@ import kotlinx.coroutines.job
  * @see Request.Get
  * @see Request.Post
  */
-internal abstract class Requester {
+abstract class Requester internal constructor() {
   /** [CoroutineScope] in which the requests are performed. */
   protected open val coroutineScope = CoroutineScope(Dispatchers.IO)
 
@@ -51,13 +54,28 @@ internal abstract class Requester {
   /**
    * [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor].
    */
-  open class Unauthenticated(override val client: HttpClient) : Requester() {
-    override suspend fun onGet(route: String): HttpResponse {
-      return client.get(route)
+  class Unauthenticated internal constructor(override val client: HttpClient) : Requester() {
+    override suspend fun onGet(
+      route: String,
+      parameters: Parameters,
+      headers: Headers
+    ): HttpResponse {
+      return client.get(route) {
+        parameters(parameters)
+        this.headers.appendAll(headers)
+      }
     }
 
-    override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
-      return client.post(route, form)
+    override suspend fun onPost(
+      route: String,
+      parameters: Parameters,
+      headers: Headers,
+      form: List<PartData>
+    ): HttpResponse {
+      return client.post(route, form) {
+        parameters(parameters)
+        this.headers.appendAll(headers)
+      }
     }
 
     /**
@@ -70,12 +88,25 @@ internal abstract class Requester {
       return object : Requester() {
         override val client = this@Unauthenticated.client
 
-        override suspend fun onGet(route: String): HttpResponse {
+        override suspend fun onGet(
+          route: String,
+          parameters: Parameters,
+          headers: Headers
+        ): HttpResponse {
           return client.get(route) { authenticate() }
         }
 
-        override suspend fun onPost(route: String, form: List<PartData>): HttpResponse {
-          return client.post(route, form) { authenticate() }
+        override suspend fun onPost(
+          route: String,
+          parameters: Parameters,
+          headers: Headers,
+          form: List<PartData>
+        ): HttpResponse {
+          return client.post(route, form) {
+            parameters(parameters)
+            this.headers.appendAll(headers)
+            authenticate()
+          }
         }
 
         /**
@@ -93,11 +124,17 @@ internal abstract class Requester {
    * Sends a GET request to the [route].
    *
    * @param route [String] that's the path for the resource to be obtained.
+   * @param parameters [Parameters] to be appended to the final URL.
+   * @param headers [Headers] with which the request will be sent.
    */
-  suspend fun get(route: String): HttpResponse {
+  suspend fun get(
+    route: String,
+    parameters: Parameters = Parameters.Empty,
+    headers: Headers = headersOf()
+  ): HttpResponse {
     return coroutineScope
-      .async { onGet(route) }
-      .retainOnCancellation { Request.Get(route) }
+      .async { onGet(route, parameters, headers) }
+      .retainOnCancellation { Request.Get(route, parameters, headers) }
       .ongoing(route, Deferred<HttpResponse>::await)
   }
 
@@ -105,12 +142,19 @@ internal abstract class Requester {
    * Sends a POST request to the [route].
    *
    * @param route [String] that's the path to which the request will be sent.
+   * @param parameters [Parameters] to be appended to the final URL.
+   * @param headers [Headers] with which the request will be sent.
    * @param form Multipart form data.
    */
-  suspend fun post(route: String, form: List<PartData> = emptyList()): HttpResponse {
+  suspend fun post(
+    route: String,
+    parameters: Parameters = Parameters.Empty,
+    headers: Headers = headersOf(),
+    form: List<PartData> = emptyList()
+  ): HttpResponse {
     return coroutineScope
-      .async { onPost(route, form) }
-      .retainOnCancellation { Request.Post(route, form) }
+      .async { onPost(route, parameters, headers, form) }
+      .retainOnCancellation { Request.Post(route, parameters, headers, form) }
       .ongoing(route, Deferred<HttpResponse>::await)
   }
 
@@ -121,6 +165,11 @@ internal abstract class Requester {
    */
   suspend fun resume() {
     retained.forEach { it.sendTo(this) }
+  }
+
+  /** Cancels all ongoing requests. */
+  fun cancelAll() {
+    ongoing.keys.forEach(::cancel)
   }
 
   /**
@@ -139,16 +188,29 @@ internal abstract class Requester {
    * Callback run whenever a GET request is sent to the [route].
    *
    * @param route [String] that's the path for the resource to be obtained.
+   * @param parameters [Parameters] to be appended to the final URL.
+   * @param headers [Headers] with which the request is being sent.
    */
-  protected abstract suspend fun onGet(route: String): HttpResponse
+  protected abstract suspend fun onGet(
+    route: String,
+    parameters: Parameters,
+    headers: Headers
+  ): HttpResponse
 
   /**
    * Callback run whenever a POST request is sent to the [route].
    *
-   * @param route [String] that's the path to which the request will be sent.
+   * @param route [String] that's the path to which the request is being sent.
+   * @param headers [Headers] with which the request is being sent.
+   * @param parameters [Parameters] to be appended to the final URL.
    * @param form Multipart form data.
    */
-  protected abstract suspend fun onPost(route: String, form: List<PartData>): HttpResponse
+  protected abstract suspend fun onPost(
+    route: String,
+    parameters: Parameters,
+    headers: Headers,
+    form: List<PartData>
+  ): HttpResponse
 
   /**
    * Retains the result of [request] if this [Job] gets cancelled.

@@ -1,16 +1,28 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
+import io.ktor.http.Headers
+import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 
 /** Anatomy of an HTTP request made by the [Requester]. */
-internal sealed interface Request {
+sealed class Request() {
   /** Path to which this [Request] was made. */
-  val route: String
+  internal abstract val route: String
+
+  /** [Parameters] that have been added to the final URL. */
+  internal abstract val parameters: Parameters
+
+  /** [Headers] with which this [Request] has been sent. */
+  internal abstract val headers: Headers
 
   /** GET HTTP request. */
-  data class Get(override val route: String) : Request {
+  data class Get(
+    override val route: String,
+    override val parameters: Parameters,
+    override val headers: Headers
+  ) : Request() {
     override suspend fun sendTo(requester: Requester) {
-      requester.get(route)
+      requester.get(route, parameters, headers)
     }
   }
 
@@ -19,9 +31,14 @@ internal sealed interface Request {
    *
    * @param form Multipart form data.
    */
-  data class Post(override val route: String, val form: List<PartData>) : Request {
+  data class Post(
+    override val route: String,
+    override val parameters: Parameters,
+    override val headers: Headers,
+    val form: List<PartData>
+  ) : Request() {
     override suspend fun sendTo(requester: Requester) {
-      requester.post(route, form)
+      requester.post(route, parameters, headers, form)
     }
   }
 
@@ -30,5 +47,5 @@ internal sealed interface Request {
    *
    * @param requester [Requester] to which this [Request] will be sent.
    */
-  suspend fun sendTo(requester: Requester)
+  internal abstract suspend fun sendTo(requester: Requester)
 }

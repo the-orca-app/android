@@ -1,8 +1,7 @@
 package com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.editable
 
 import com.jeanbarrossilva.orca.core.feed.profile.type.editable.Editor
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndSubmitForm
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndSubmitFormWithBinaryData
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -21,6 +20,11 @@ import kotlin.io.path.name
 
 /** [Editor] whose actions communicate with the Mastodon API. */
 internal class MastodonEditor : Editor {
+  private val requester =
+    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+      .requester
+      .authenticated(authenticationLock)
+
   @Suppress("UNREACHABLE_CODE", "UNUSED_VARIABLE")
   override suspend fun setAvatarLoader(avatarLoader: SomeImageLoader) {
     val file: Path = TODO()
@@ -29,22 +33,16 @@ internal class MastodonEditor : Editor {
     val inputProvider = InputProvider(fileLength) { fileAsFile.inputStream().asInput() }
     val contentDisposition = "form-data; name=\"avatar\" filename=\"${file.name}\""
     val headers = Headers.build { append(HttpHeaders.ContentDisposition, contentDisposition) }
-    val formData = formData { append("avatar", inputProvider, headers) }
-    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-      .client
-      .authenticateAndSubmitFormWithBinaryData(ROUTE, formData)
+    val form = formData { append("avatar", inputProvider, headers) }
+    requester.post(ROUTE, form = form)
   }
 
   override suspend fun setName(name: String) {
-    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-      .client
-      .authenticateAndSubmitForm(ROUTE, parametersOf("display_name", name))
+    requester.post(ROUTE, parametersOf("display_name", name))
   }
 
   override suspend fun setBio(bio: StyledString) {
-    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-      .client
-      .authenticateAndSubmitForm(ROUTE, parametersOf("note", "$bio"))
+    requester.post(ROUTE, parametersOf("note", "$bio"))
   }
 
   companion object {

@@ -15,7 +15,6 @@ import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.injector.Injector
 import io.ktor.client.call.body
-import io.ktor.client.request.forms.submitForm
 import io.ktor.http.Parameters
 import kotlinx.coroutines.launch
 
@@ -40,8 +39,8 @@ private constructor(application: Application, private val authorizationCode: Str
     val redirectUri = application.getString(R.string.redirect_uri, scheme)
     viewModelScope.launch {
       (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-        .client
-        .submitForm(
+        .requester
+        .post(
           "/oauth/token",
           Parameters.build {
             set("grant_type", "authorization_code")

@@ -5,7 +5,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.account.MastodonAccount
-import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticateAndGet
+import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
@@ -30,8 +30,9 @@ internal class MastodonProfileFetcher(
 ) : Fetcher<Profile>() {
   override suspend fun onFetch(key: String): Profile {
     return (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
-      .client
-      .authenticateAndGet("/api/v1/accounts/$key")
+      .requester
+      .authenticated(authenticationLock)
+      .get("/api/v1/accounts/$key")
       .body<MastodonAccount>()
       .toProfile(avatarLoaderProvider, tootPaginatorProvider)
   }

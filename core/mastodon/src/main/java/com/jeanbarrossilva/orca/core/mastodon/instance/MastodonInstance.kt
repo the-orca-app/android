@@ -5,6 +5,7 @@ import com.jeanbarrossilva.orca.core.auth.Authorizer
 import com.jeanbarrossilva.orca.core.instance.Instance
 import com.jeanbarrossilva.orca.core.instance.domain.Domain
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.HttpRequest
@@ -17,7 +18,7 @@ import io.ktor.http.takeFrom
 internal typealias SomeHttpInstance = MastodonInstance<*, *>
 
 /**
- * [Instance] that performs all of its underlying operations by sending [HttpRequest]s to the API.
+ * [Instance] that performs all of its underlying operations by sending HTTP requests to the API.
  *
  * @param F [Authorizer] with which authorization will be performed.
  * @param S [Authenticator] to authenticate the user with.
@@ -27,9 +28,17 @@ abstract class MastodonInstance<F : Authorizer, S : Authenticator>(
   final override val domain: Domain,
   internal val authorizer: F
 ) : Instance<S>() {
+  /** [HttpClient] by which HTTP requests will be sent. */
+  protected open val client = CoreHttpClient {
+    defaultRequest { url.takeFrom(this@MastodonInstance.url) }
+  }
+
   /** [Url] to which routes will be appended when [HttpRequest]s are sent. */
   internal val url = URLBuilder().apply { set(scheme = "https", host = "$domain") }.build()
 
-  /** [HttpClient] by which [HttpRequest]s will be sent. */
-  open val client = CoreHttpClient { defaultRequest { url.takeFrom(this@MastodonInstance.url) } }
+  /**
+   * [Requester] that will mediate the sending of HTTP requests to the [client] and deal with
+   * performing, retrying, cancelling and resuming them.
+   */
+  val requester by lazy { Requester.through(client) }
 }
