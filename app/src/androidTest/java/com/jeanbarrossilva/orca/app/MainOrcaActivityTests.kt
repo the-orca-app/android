@@ -8,12 +8,12 @@ import com.jeanbarrossilva.orca.core.mastodon.auth.authorization.MastodonAuthori
 import org.junit.Rule
 import org.junit.Test
 
-internal class OrcaActivityTests {
+internal class MainOrcaActivityTests {
   @get:Rule val intentsRule = IntentsRule()
 
   @Test
   fun navigatesToAuthorization() {
-    launchActivity<OrcaActivity>().use {
+    launchActivity<MainOrcaActivity>().use {
       intended(hasComponent(MastodonAuthorizationActivity::class.qualifiedName))
     }
   }
