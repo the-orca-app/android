@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
@@ -6,6 +6,7 @@ import assertk.assertions.isFalse
 import assertk.assertions.isNotSameAs
 import assertk.assertions.isSameAs
 import assertk.assertions.isTrue
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.call.body
 import io.ktor.client.engine.mock.respondOk

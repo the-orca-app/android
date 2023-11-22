@@ -1,5 +1,6 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
 
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import io.ktor.http.Headers
 import io.ktor.http.Parameters
 import io.ktor.http.content.PartData

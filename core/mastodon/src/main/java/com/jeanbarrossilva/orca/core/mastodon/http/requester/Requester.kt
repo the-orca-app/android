@@ -2,6 +2,7 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
 import io.ktor.client.HttpClient
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Headers
