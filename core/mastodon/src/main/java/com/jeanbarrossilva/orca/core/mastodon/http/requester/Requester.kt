@@ -36,7 +36,7 @@ abstract class Requester internal constructor() {
   protected open val retained = hashSetOf<Request>()
 
   /** [CoreHttpClient] to which requests are sent. */
-  abstract val client: HttpClient
+  internal abstract val client: HttpClient
 
   /**
    * [CancellationException] that denotes that an operation was intentionally interrupted by the
