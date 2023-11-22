@@ -57,10 +57,9 @@ abstract class Requester internal constructor() {
     parameters: Parameters = Parameters.Empty,
     headers: Headers = headersOf()
   ): HttpResponse {
-    return coroutineScope
-      .async { onGet(route, parameters, headers) }
-      .retainOnCancellation { Request.Get(route, parameters, headers) }
-      .ongoing(route, Deferred<HttpResponse>::await)
+    return request(route, { Request.Get(route, parameters, headers) }) {
+      onGet(route, parameters, headers)
+    }
   }
 
   /**
@@ -77,10 +76,9 @@ abstract class Requester internal constructor() {
     headers: Headers = headersOf(),
     form: List<PartData> = emptyList()
   ): HttpResponse {
-    return coroutineScope
-      .async { onPost(route, parameters, headers, form) }
-      .retainOnCancellation { Request.Post(route, parameters, headers, form) }
-      .ongoing(route, Deferred<HttpResponse>::await)
+    return request(route, { Request.Post(route, parameters, headers, form) }) {
+      onPost(route, parameters, headers, form)
+    }
   }
 
   /**
@@ -138,10 +136,31 @@ abstract class Requester internal constructor() {
   ): HttpResponse
 
   /**
+   * Obtains the result of [response] asynchronously, retaining [request]'s if the underlying [Job]
+   * is intentionally cancelled.
+   *
+   * @param route [String] that's the path to which the request will be sent.
+   * @param request Lazily creates the [Request] to be retained.
+   * @param response Provides the response that originates from actually performing the request.
+   * @see retainOnCancellation
+   */
+  private suspend fun request(
+    route: String,
+    request: () -> Request,
+    response: suspend () -> HttpResponse
+  ): HttpResponse {
+    return coroutineScope
+      .async { response() }
+      .retainOnCancellation(request)
+      .ongoing(route, Deferred<HttpResponse>::await)
+  }
+
+  /**
    * Retains the result of [request] if this [Job] gets cancelled.
    *
    * @param T Job whose completion will be listened to.
    * @param request Lazily creates the [Request] to be retained.
+   * @see retained
    */
   private fun <T : Job> T.retainOnCancellation(request: () -> Request): T {
     invokeOnCompletion {
