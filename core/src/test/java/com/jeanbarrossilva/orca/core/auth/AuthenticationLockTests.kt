@@ -2,7 +2,6 @@ package com.jeanbarrossilva.orca.core.auth
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
 import com.jeanbarrossilva.orca.core.test.TestActorProvider
 import com.jeanbarrossilva.orca.core.test.TestAuthenticationLock
 import com.jeanbarrossilva.orca.core.test.TestAuthenticator
@@ -19,7 +18,7 @@ internal class AuthenticationLockTests {
   fun `GIVEN an unauthenticated actor WHEN unlocking THEN it's authenticated`() {
     var hasBeenAuthenticated = false
     val authenticator = TestAuthenticator { hasBeenAuthenticated = true }
-    runTest { TestAuthenticationLock(authenticator = authenticator).requestUnlock {} }
+    runTest { TestAuthenticationLock(authenticator = authenticator).scheduleUnlock {} }
     assertTrue(hasBeenAuthenticated)
   }
 
@@ -30,7 +29,7 @@ internal class AuthenticationLockTests {
     var hasListenerBeenNotified = false
     runTest {
       authenticator.authenticate()
-      TestAuthenticationLock(actorProvider, authenticator).requestUnlock {
+      TestAuthenticationLock(actorProvider, authenticator).scheduleUnlock {
         hasListenerBeenNotified = true
       }
     }
@@ -38,10 +37,10 @@ internal class AuthenticationLockTests {
   }
 
   @Test
-  fun `GIVEN an ongoing unlock request WHEN scheduling other ones THEN they're performed sequentially`() {
+  fun `GIVEN an ongoing unlock WHEN scheduling other ones THEN they're performed sequentially`() {
     val lock = TestAuthenticationLock()
     runTest {
-      lock.requestUnlock { delay(32.seconds) }
+      lock.scheduleUnlock { delay(32.seconds) }
       repeat(1_024) { lock.scheduleUnlock { delay(8.seconds) } }
       assertThat(
           @OptIn(ExperimentalCoroutinesApi::class)
@@ -49,12 +48,5 @@ internal class AuthenticationLockTests {
         )
         .isEqualTo(8_224)
     }
-  }
-
-  @Test
-  fun `GIVEN an inactive lock WHEN scheduling an unlock THEN it's unlocked immediately`() {
-    var hasBeenUnlocked = false
-    runTest { TestAuthenticationLock().scheduleUnlock { hasBeenUnlocked = true } }
-    assertThat(hasBeenUnlocked).isTrue()
   }
 }

@@ -129,7 +129,7 @@ suspend inline fun HttpClient.authenticateAndSubmitForm(
   parameters: Parameters,
   crossinline build: HttpRequestBuilder.() -> Unit = {}
 ): HttpResponse {
-  return authenticationLock.requestUnlock {
+  return authenticationLock.scheduleUnlock {
     submitForm(route, parameters) {
       bearerAuth(it.accessToken)
       build.invoke(this)
@@ -163,7 +163,7 @@ suspend inline fun HttpClient.authenticateAndSubmitFormWithBinaryData(
  */
 @PublishedApi
 internal suspend fun HttpMessageBuilder.authenticate() {
-  authenticationLock.requestUnlock { bearerAuth(it.accessToken) }
+  authenticationLock.scheduleUnlock { bearerAuth(it.accessToken) }
 }
 
 /**

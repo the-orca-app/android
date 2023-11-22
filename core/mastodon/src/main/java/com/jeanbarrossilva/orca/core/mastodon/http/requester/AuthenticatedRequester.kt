@@ -48,6 +48,6 @@ internal class AuthenticatedRequester(
    * [Authorization][HttpHeaders.Authorization] header through the [lock].
    */
   private suspend fun HttpMessageBuilder.authenticate() {
-    lock.requestUnlock { bearerAuth(it.accessToken) }
+    lock.scheduleUnlock { bearerAuth(it.accessToken) }
   }
 }

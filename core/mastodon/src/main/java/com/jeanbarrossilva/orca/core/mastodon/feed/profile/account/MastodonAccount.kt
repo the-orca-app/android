@@ -99,7 +99,7 @@ internal data class MastodonAccount(
       .instanceProvider()
       .provide()
       .authenticationLock
-      .requestUnlock { it.id == id }
+      .scheduleUnlock { it.id == id }
   }
 
   /**

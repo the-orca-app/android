@@ -26,7 +26,7 @@ internal class MainOrcaActivity : OrcaActivity() {
     lifecycleScope.launch(Dispatchers.IO) {
       with(coreModule) {
         with(authenticationLock()) {
-          scheduleUnlock {
+          this.scheduleUnlock {
             (instanceProvider() as MastodonInstanceProvider)
               .provide()
               .requester
