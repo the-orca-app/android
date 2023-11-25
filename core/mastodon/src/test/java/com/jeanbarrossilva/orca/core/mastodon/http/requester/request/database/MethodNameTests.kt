@@ -1,7 +1,8 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
 import kotlin.test.Test
 
 internal class MethodNameTests {

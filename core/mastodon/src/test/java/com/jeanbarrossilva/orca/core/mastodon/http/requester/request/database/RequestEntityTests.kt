@@ -1,7 +1,8 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
 import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
 import io.ktor.http.parametersOf
