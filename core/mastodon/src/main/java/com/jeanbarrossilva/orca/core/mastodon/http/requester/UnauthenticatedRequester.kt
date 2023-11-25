@@ -56,7 +56,9 @@ internal constructor(override val database: RequestDatabase, override val client
   }
 
   /** Removes all [AuthenticatedRequester]s that have been created. */
-  internal fun clear() {
+  override fun clear() {
+    super.clear()
+    authenticated.values.forEach(AuthenticatedRequester::clear)
     authenticated.clear()
   }
 }

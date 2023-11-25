@@ -1,6 +1,7 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
 import android.content.Context
+import androidx.annotation.CallSuper
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
@@ -110,6 +111,16 @@ abstract class Requester internal constructor() {
       coroutineScope.coroutineContext.job.cancel(UnretainableCancellationException())
       ongoing.remove(route)
     }
+  }
+
+  /**
+   * Removes all requests that are currently retained.
+   *
+   * @see retainOnCancellation
+   */
+  @CallSuper
+  internal open fun clear() {
+    database.clearAllTables()
   }
 
   /**
