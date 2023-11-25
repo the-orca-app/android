@@ -29,16 +29,16 @@ internal class RequesterTests {
   @Test
   fun createsRequesterOnce() {
     val client = requesterRule.requester.client
-    val requester = Requester.through(context, client)
-    assertThat(Requester.through(context, client)).isSameAs(requester)
+    val requester = Requester.of(context, client)
+    assertThat(Requester.of(context, client)).isSameAs(requester)
   }
 
   @Test
   fun clearsRequesters() {
     val client = requesterRule.requester.client
-    val requester = Requester.through(context, client)
+    val requester = Requester.of(context, client)
     Requester.clear()
-    assertThat(Requester.through(context, client)).isNotSameAs(requester)
+    assertThat(Requester.of(context, client)).isNotSameAs(requester)
   }
 
   @Test

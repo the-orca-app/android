@@ -206,7 +206,7 @@ abstract class Requester internal constructor() {
      * @see UnauthenticatedRequester
      * @see UnauthenticatedRequester.authenticated
      */
-    fun through(context: Context, client: HttpClient): UnauthenticatedRequester {
+    fun of(context: Context, client: HttpClient): UnauthenticatedRequester {
       return creations.getOrPut(client) {
         val database = RequestDatabase.get(context)
         UnauthenticatedRequester(database, client)

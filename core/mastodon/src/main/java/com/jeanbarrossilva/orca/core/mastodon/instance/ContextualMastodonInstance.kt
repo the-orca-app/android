@@ -130,5 +130,5 @@ class ContextualMastodonInstance(
    * [Requester] that will mediate the sending of HTTP requests to the [client] and deal with
    * performing, retrying, cancelling and resuming them.
    */
-  val requester = Requester.through(context, client)
+  val requester = Requester.of(context, client)
 }

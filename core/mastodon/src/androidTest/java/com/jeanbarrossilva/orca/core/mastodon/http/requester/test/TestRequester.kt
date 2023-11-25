@@ -62,7 +62,7 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
       Logger()
     )
 
-  private val delegate by lazy { through(context, client) }
+  private val delegate by lazy { of(context, client) }
 
   override suspend fun onGet(
     route: String,
