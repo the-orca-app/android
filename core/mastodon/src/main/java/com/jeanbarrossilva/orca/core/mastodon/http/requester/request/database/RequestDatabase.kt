@@ -1,5 +1,6 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -8,6 +9,9 @@ import androidx.room.RoomDatabase
 /** [RoomDatabase] into which [request entities][RequestEntity] will be persisted. */
 @Database(entities = [RequestEntity::class], version = 1)
 internal abstract class RequestDatabase : RoomDatabase() {
+  /** DAO for operating on [request entities][RequestEntity]. */
+  abstract val dao: RequestDao
+
   companion object {
     /**
      * [RequestDatabase] to be created once and used throughout the whole [Application] lifecycle.
