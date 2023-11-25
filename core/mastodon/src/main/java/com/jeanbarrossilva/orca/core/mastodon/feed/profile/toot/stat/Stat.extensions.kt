@@ -5,7 +5,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.stat.Stat
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonContext
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.imageloader.Image
@@ -32,7 +32,7 @@ internal fun CommentStat(
   return Stat(count) {
     get {
       flow {
-        (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+        (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
           .requester
           .authenticated(authenticationLock)
           .get("/api/v1/statuses/$id/context")

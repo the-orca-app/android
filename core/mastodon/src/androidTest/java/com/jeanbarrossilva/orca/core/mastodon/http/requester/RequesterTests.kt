@@ -1,17 +1,16 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
+import androidx.test.platform.app.InstrumentationRegistry
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNotSameAs
 import assertk.assertions.isSameAs
 import assertk.assertions.isTrue
-import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.call.body
 import io.ktor.client.engine.mock.respondOk
 import io.ktor.http.HttpStatusCode
-import kotlin.test.Test
 import kotlin.time.Duration
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancelAndJoin
@@ -19,23 +18,27 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
+import org.junit.Test
 
 internal class RequesterTests {
+  private val context
+    get() = InstrumentationRegistry.getInstrumentation().context
+
   @get:Rule val requesterRule = TestRequesterTestRule()
 
   @Test
   fun createsRequesterOnce() {
     val client = requesterRule.requester.client
-    val requester = Requester.through(client)
-    assertThat(Requester.through(client)).isSameAs(requester)
+    val requester = Requester.through(context, client)
+    assertThat(Requester.through(context, client)).isSameAs(requester)
   }
 
   @Test
   fun clearsRequesters() {
     val client = requesterRule.requester.client
-    val requester = Requester.through(client)
+    val requester = Requester.through(context, client)
     Requester.clear()
-    assertThat(Requester.through(client)).isNotSameAs(requester)
+    assertThat(Requester.through(context, client)).isNotSameAs(requester)
   }
 
   @Test

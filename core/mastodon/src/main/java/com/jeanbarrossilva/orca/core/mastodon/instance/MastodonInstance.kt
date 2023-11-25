@@ -5,7 +5,6 @@ import com.jeanbarrossilva.orca.core.auth.Authorizer
 import com.jeanbarrossilva.orca.core.instance.Instance
 import com.jeanbarrossilva.orca.core.instance.domain.Domain
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
-import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.HttpRequest
@@ -35,10 +34,4 @@ abstract class MastodonInstance<F : Authorizer, S : Authenticator>(
 
   /** [Url] to which routes will be appended when [HttpRequest]s are sent. */
   internal val url = URLBuilder().apply { set(scheme = "https", host = "$domain") }.build()
-
-  /**
-   * [Requester] that will mediate the sending of HTTP requests to the [client] and deal with
-   * performing, retrying, cancelling and resuming them.
-   */
-  val requester by lazy { Requester.through(client) }
 }

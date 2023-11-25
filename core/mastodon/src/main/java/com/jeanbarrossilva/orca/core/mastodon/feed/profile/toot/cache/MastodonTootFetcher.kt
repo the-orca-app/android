@@ -3,7 +3,7 @@ package com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.cache
 import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.status.MastodonStatus
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.platform.cache.Fetcher
@@ -22,7 +22,7 @@ import java.net.URL
 internal class MastodonTootFetcher(private val imageLoaderProvider: ImageLoader.Provider<URL>) :
   Fetcher<Toot>() {
   override suspend fun onFetch(key: String): Toot {
-    return (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+    return (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
       .requester
       .authenticated(authenticationLock)
       .get("/api/v1/statuses/$key")

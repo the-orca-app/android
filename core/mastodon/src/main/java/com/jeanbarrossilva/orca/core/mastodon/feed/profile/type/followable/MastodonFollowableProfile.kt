@@ -8,7 +8,9 @@ import com.jeanbarrossilva.orca.core.feed.profile.type.followable.FollowableProf
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
+import com.jeanbarrossilva.orca.core.module.CoreModule
+import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.imageloader.SomeImageLoader
 import com.jeanbarrossilva.orca.std.injector.Injector
 import com.jeanbarrossilva.orca.std.styledstring.StyledString
@@ -47,6 +49,9 @@ internal data class MastodonFollowableProfile<T : Follow>(
   FollowableProfile<T>() {
   override suspend fun onChangeFollowTo(follow: T) {
     val toggledRoute = follow.getToggledRoute(this)
-    Injector.get<SomeHttpInstance>().requester.authenticated(authenticationLock).post(toggledRoute)
+    (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
+      .requester
+      .authenticated(authenticationLock)
+      .post(toggledRoute)
   }
 }

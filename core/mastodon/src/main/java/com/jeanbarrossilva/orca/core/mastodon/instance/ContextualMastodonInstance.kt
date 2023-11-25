@@ -25,6 +25,7 @@ import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonToot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.MastodonTootProvider
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.cache.MastodonTootFetcher
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.cache.storage.MastodonTootStorage
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import com.jeanbarrossilva.orca.platform.cache.Cache
 import com.jeanbarrossilva.orca.std.imageloader.Image
 import com.jeanbarrossilva.orca.std.imageloader.ImageLoader
@@ -124,4 +125,10 @@ class ContextualMastodonInstance(
   override val profileProvider = MastodonProfileProvider(profileCache)
   override val profileSearcher = MastodonProfileSearcher(profileSearchResultsCache)
   override val tootProvider = MastodonTootProvider(tootCache)
+
+  /**
+   * [Requester] that will mediate the sending of HTTP requests to the [client] and deal with
+   * performing, retrying, cancelling and resuming them.
+   */
+  val requester = Requester.through(context, client)
 }

@@ -3,6 +3,7 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester
 import com.jeanbarrossilva.orca.core.auth.AuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.SomeAuthenticationLock
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database.RequestDatabase
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -11,7 +12,9 @@ import io.ktor.http.Parameters
 import io.ktor.http.content.PartData
 
 /** [Requester] that sends HTTP requests as an [unauthenticated][Actor.Unauthenticated] [Actor]. */
-class UnauthenticatedRequester internal constructor(override val client: HttpClient) : Requester() {
+class UnauthenticatedRequester
+internal constructor(override val database: RequestDatabase, override val client: HttpClient) :
+  Requester() {
   /**
    * [AuthenticatedRequester]s that have been created, associated to their
    * [lock][AuthenticatedRequester.lock].
@@ -49,7 +52,7 @@ class UnauthenticatedRequester internal constructor(override val client: HttpCli
    * @see AuthenticatedRequester
    */
   fun authenticated(lock: SomeAuthenticationLock): Requester {
-    return authenticated.getOrPut(lock) { AuthenticatedRequester(lock, client) }
+    return authenticated.getOrPut(lock) { AuthenticatedRequester(lock, database, client) }
   }
 
   /** Removes all [AuthenticatedRequester]s that have been created. */

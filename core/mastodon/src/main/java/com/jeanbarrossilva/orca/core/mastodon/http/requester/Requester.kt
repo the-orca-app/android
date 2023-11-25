@@ -1,8 +1,10 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester
 
+import android.content.Context
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database.RequestDatabase
 import io.ktor.client.HttpClient
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Headers
@@ -35,6 +37,9 @@ abstract class Requester internal constructor() {
 
   /** Requests that have been interrupted unexpectedly and are retained for later execution. */
   protected open val retained = hashSetOf<Request>()
+
+  /** [RequestDatabase] into which requests will be persisted. */
+  internal abstract val database: RequestDatabase
 
   /** [CoreHttpClient] to which requests are sent. */
   internal abstract val client: HttpClient
@@ -196,12 +201,16 @@ abstract class Requester internal constructor() {
      * Creates or retrieves a [Requester] that sends HTTP requests as an
      * [unauthenticated][Actor.Unauthenticated] [Actor] by default through the given [client].
      *
+     * @param context [Context] through which the [database] will be either created or retrieved.
      * @param client [CoreHttpClient] through which requests will be sent.
      * @see UnauthenticatedRequester
      * @see UnauthenticatedRequester.authenticated
      */
-    fun through(client: HttpClient): UnauthenticatedRequester {
-      return creations.getOrPut(client) { UnauthenticatedRequester(client) }
+    fun through(context: Context, client: HttpClient): UnauthenticatedRequester {
+      return creations.getOrPut(client) {
+        val database = RequestDatabase.get(context)
+        UnauthenticatedRequester(database, client)
+      }
     }
 
     /** Removes all created [Requester]s. */

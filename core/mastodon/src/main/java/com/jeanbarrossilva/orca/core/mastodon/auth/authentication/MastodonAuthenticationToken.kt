@@ -1,12 +1,11 @@
 package com.jeanbarrossilva.orca.core.mastodon.auth.authentication
 
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.injector.Injector
 import io.ktor.client.call.body
-import io.ktor.client.request.get
 import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
 import kotlinx.serialization.Serializable
@@ -25,7 +24,7 @@ internal data class MastodonAuthenticationToken(val accessToken: String) {
    */
   suspend fun toActor(): Actor.Authenticated {
     val id =
-      (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+      (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
         .requester
         .get(
           "/api/v1/accounts/verify_credentials",

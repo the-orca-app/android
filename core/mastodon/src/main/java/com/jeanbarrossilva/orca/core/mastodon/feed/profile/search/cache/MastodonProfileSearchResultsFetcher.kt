@@ -7,7 +7,7 @@ import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfile
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.MastodonProfileTootPaginator
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.account.MastodonAccount
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.platform.cache.Fetcher
@@ -31,7 +31,7 @@ internal class MastodonProfileSearchResultsFetcher(
   private val tootPaginatorProvider: MastodonProfileTootPaginator.Provider
 ) : Fetcher<List<ProfileSearchResult>>() {
   override suspend fun onFetch(key: String): List<ProfileSearchResult> {
-    return (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+    return (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
       .requester
       .authenticated(authenticationLock)
       .get("/api/v1/accounts/search", parametersOf("q", key))

@@ -2,7 +2,7 @@ package com.jeanbarrossilva.orca.core.mastodon.feed.profile.type.editable
 
 import com.jeanbarrossilva.orca.core.feed.profile.type.editable.Editor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.imageloader.SomeImageLoader
@@ -21,7 +21,7 @@ import kotlin.io.path.name
 /** [Editor] whose actions communicate with the Mastodon API. */
 internal class MastodonEditor : Editor {
   private val requester =
-    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+    (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
       .requester
       .authenticated(authenticationLock)
 

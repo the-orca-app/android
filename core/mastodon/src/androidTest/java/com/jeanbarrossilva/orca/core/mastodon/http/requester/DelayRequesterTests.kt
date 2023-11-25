@@ -4,11 +4,11 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
 import io.ktor.client.engine.mock.respondOk
-import kotlin.test.Test
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
+import org.junit.Test
 
 internal class DelayRequesterTests {
   @get:Rule val requesterRule = TestRequesterTestRule().delayedBy(2.minutes)

@@ -4,8 +4,8 @@ import assertk.assertThat
 import assertk.assertions.isNotInstanceOf
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.DelayedRequester
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.test.TestRequesterTestRule
-import kotlin.test.Test
 import kotlin.time.Duration
+import org.junit.Test
 
 internal class TestRequesterTestRuleTests {
   @Test

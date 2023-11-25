@@ -1,9 +1,12 @@
 package com.jeanbarrossilva.orca.core.mastodon.http.requester.test
 
+import android.content.Context
+import androidx.room.Room
+import androidx.test.platform.app.InstrumentationRegistry
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import com.jeanbarrossilva.orca.core.mastodon.http.client.Logger
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
-import com.jeanbarrossilva.orca.core.mastodon.instance.test.test
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database.RequestDatabase
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.HttpClientEngineFactory
@@ -39,7 +42,12 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
     respondBadRequest()
   }
 
+  /** [Context] with which both the [delegate] and this [TestRequester]'s [database] are created. */
+  private val context
+    get() = InstrumentationRegistry.getInstrumentation().context
+
   public override val retained = super.retained
+  override val database = Room.inMemoryDatabaseBuilder(context, RequestDatabase::class.java).build()
 
   public final override var coroutineScope = super.coroutineScope
     private set
@@ -51,10 +59,10 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
           return MockEngine { response(it) }
         }
       },
-      Logger.test
+      Logger()
     )
 
-  private val delegate by lazy { through(client) }
+  private val delegate by lazy { through(context, client) }
 
   override suspend fun onGet(
     route: String,

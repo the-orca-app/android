@@ -4,7 +4,7 @@ import com.jeanbarrossilva.orca.core.feed.profile.toot.Toot
 import com.jeanbarrossilva.orca.core.mastodon.feed.profile.toot.status.MastodonStatus
 import com.jeanbarrossilva.orca.core.mastodon.http.client.authenticationLock
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.platform.ui.core.mapEach
@@ -48,7 +48,7 @@ internal abstract class MastodonTootPaginator {
 
   /** [Requester] that will mediate the sending of HTTP requests. */
   private val requester by lazy {
-    (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+    (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
       .requester
       .authenticated(authenticationLock)
   }

@@ -3,7 +3,7 @@ package com.jeanbarrossilva.orca.core.mastodon.http.client
 import android.util.Log
 
 /** Logs messages with different severity levels. */
-abstract class Logger {
+open class Logger {
   /**
    * Logs additional information.
    *
@@ -27,14 +27,14 @@ abstract class Logger {
    *
    * @param info [String] with the information to be logged.
    */
-  protected abstract fun onInfo(info: String)
+  protected open fun onInfo(info: String) {}
 
   /**
    * Logs the occurrence of an error.
    *
    * @param error [String] describing the error to be logged.
    */
-  protected abstract fun onError(error: String)
+  protected open fun onError(error: String) {}
 
   companion object {
     /** Tag to which logs sent by [android] will be attached. */

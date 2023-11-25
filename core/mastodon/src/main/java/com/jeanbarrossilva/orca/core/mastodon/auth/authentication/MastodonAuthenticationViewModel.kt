@@ -10,7 +10,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.R
 import com.jeanbarrossilva.orca.core.mastodon.auth.Mastodon
-import com.jeanbarrossilva.orca.core.mastodon.instance.SomeHttpInstance
+import com.jeanbarrossilva.orca.core.mastodon.instance.ContextualMastodonInstance
 import com.jeanbarrossilva.orca.core.module.CoreModule
 import com.jeanbarrossilva.orca.core.module.instanceProvider
 import com.jeanbarrossilva.orca.std.injector.Injector
@@ -38,7 +38,7 @@ private constructor(application: Application, private val authorizationCode: Str
     val scheme = application.getString(R.string.scheme)
     val redirectUri = application.getString(R.string.redirect_uri, scheme)
     viewModelScope.launch {
-      (Injector.from<CoreModule>().instanceProvider().provide() as SomeHttpInstance)
+      (Injector.from<CoreModule>().instanceProvider().provide() as ContextualMastodonInstance)
         .requester
         .post(
           "/oauth/token",
