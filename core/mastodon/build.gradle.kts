@@ -29,6 +29,7 @@ dependencies {
   androidTestImplementation(libs.android.compose.ui.test.junit)
   androidTestImplementation(libs.android.test.core)
   androidTestImplementation(libs.android.test.runner)
+  androidTestImplementation(libs.assertk)
   androidTestImplementation(libs.mockk)
 
   api(project(":core-module"))
