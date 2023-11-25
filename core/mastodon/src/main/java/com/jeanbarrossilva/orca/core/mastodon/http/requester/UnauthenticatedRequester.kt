@@ -27,7 +27,7 @@ internal constructor(override val database: RequestDatabase, override val client
     headers: Headers
   ): HttpResponse {
     return client.get(route) {
-      parameters(parameters)
+      url.parameters.appendAll(parameters)
       this.headers.appendAll(headers)
     }
   }
@@ -39,7 +39,7 @@ internal constructor(override val database: RequestDatabase, override val client
     form: List<PartData>
   ): HttpResponse {
     return client.post(route, form) {
-      parameters(parameters)
+      url.parameters.appendAll(parameters)
       this.headers.appendAll(headers)
     }
   }

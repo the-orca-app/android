@@ -29,7 +29,11 @@ internal class AuthenticatedRequester(
     parameters: Parameters,
     headers: Headers
   ): HttpResponse {
-    return client.get(route) { authenticate() }
+    return client.get(route) {
+      url.parameters.appendAll(parameters)
+      this.headers.appendAll(headers)
+      authenticate()
+    }
   }
 
   override suspend fun onPost(
@@ -39,7 +43,7 @@ internal class AuthenticatedRequester(
     form: List<PartData>
   ): HttpResponse {
     return client.post(route, form) {
-      parameters(parameters)
+      url.parameters.appendAll(parameters)
       this.headers.appendAll(headers)
       authenticate()
     }
