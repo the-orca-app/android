@@ -4,7 +4,6 @@ import androidx.annotation.StringDef
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
-import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.valueOf
 import io.ktor.http.Headers
 import io.ktor.http.Parameters
 

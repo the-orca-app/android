@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
 import io.ktor.util.StringValues
 

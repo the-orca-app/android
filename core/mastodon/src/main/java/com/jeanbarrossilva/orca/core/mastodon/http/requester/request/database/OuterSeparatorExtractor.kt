@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
 /**
  * Extracts the indices of outer separators within the [String] representation of a collection of

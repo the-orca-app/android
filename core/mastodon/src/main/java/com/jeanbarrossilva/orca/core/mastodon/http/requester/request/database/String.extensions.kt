@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
+package com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database
 
 /**
  * Splits this [String] representation of a collection into each of its [String] elements (e. g.,
