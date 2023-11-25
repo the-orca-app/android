@@ -5,6 +5,7 @@ import com.jeanbarrossilva.orca.core.auth.actor.Actor
 import com.jeanbarrossilva.orca.core.mastodon.http.client.CoreHttpClient
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.Request
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database.RequestDatabase
+import com.jeanbarrossilva.orca.core.mastodon.http.requester.request.database.RequestEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Headers
@@ -18,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
 
 /**
  * Manages the sending, repetition, cancellation and continuity of asynchronous HTTP requests.
@@ -34,9 +36,6 @@ abstract class Requester internal constructor() {
    * Requests that are currently being performed, associated to the route to which they were sent.
    */
   protected val ongoing = hashMapOf<String, Job>()
-
-  /** Requests that have been interrupted unexpectedly and are retained for later execution. */
-  protected open val retained = hashSetOf<Request>()
 
   /** [RequestDatabase] into which requests will be persisted. */
   internal abstract val database: RequestDatabase
@@ -90,10 +89,10 @@ abstract class Requester internal constructor() {
   /**
    * Tries to re-send all requests that are currently retained.
    *
-   * @see retained
+   * @see retainOnCancellation
    */
   suspend fun resume() {
-    retained.forEach { it.sendTo(this) }
+    database.dao.selectAll().map(RequestEntity::toRequest).forEach { it.sendTo(this) }
   }
 
   /** Cancels all ongoing requests. */
@@ -166,13 +165,13 @@ abstract class Requester internal constructor() {
    *
    * @param T Job whose completion will be listened to.
    * @param request Lazily creates the [Request] to be retained.
-   * @see retained
+   * @see retain
    */
   private fun <T : Job> T.retainOnCancellation(request: () -> Request): T {
     invokeOnCompletion {
       val isRetainable = it is CancellationException && it !is UnretainableCancellationException
       if (isRetainable) {
-        retained.add(request())
+        retain(request)
       }
     }
     return this
@@ -188,6 +187,16 @@ abstract class Requester internal constructor() {
   private suspend fun <I : Job, O> I.ongoing(route: String, action: suspend I.() -> O): O {
     ongoing[route] = this
     return action().also { ongoing.remove(route) }
+  }
+
+  /**
+   * Retains the result of [request].
+   *
+   * @param request Lazily creates the [Request] to be retained.
+   */
+  private fun retain(request: () -> Request) {
+    val entity = request().toRequestEntity()
+    coroutineScope.launch { database.dao.insert(entity) }
   }
 
   companion object {

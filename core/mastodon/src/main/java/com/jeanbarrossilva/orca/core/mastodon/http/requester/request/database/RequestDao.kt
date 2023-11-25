@@ -15,6 +15,9 @@ internal interface RequestDao {
    */
   @Insert suspend fun insert(entity: RequestEntity)
 
+  /** Selects all inserted [request entities][RequestEntity]. */
+  @Query("SELECT * FROM requests") suspend fun selectAll(): List<RequestEntity>
+
   /**
    * Selects the inserted [RequestEntity] whose [route][RequestEntity.route] is the same as the
    * given one.

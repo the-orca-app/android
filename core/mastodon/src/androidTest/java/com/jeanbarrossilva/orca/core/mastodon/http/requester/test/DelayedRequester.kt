@@ -15,7 +15,6 @@ import kotlinx.coroutines.delay
  */
 internal class DelayedRequester(val delegate: SomeTestRequester, val delay: Duration) :
   TestRequester<DelayedRequester>() {
-  override val retained = delegate.retained
   override val client = delegate.client
 
   override suspend fun onGet(

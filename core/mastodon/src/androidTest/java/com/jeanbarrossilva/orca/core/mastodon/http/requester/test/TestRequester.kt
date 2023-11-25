@@ -46,7 +46,6 @@ internal open class TestRequester<T : TestRequester<T>> : Requester() {
   private val context
     get() = InstrumentationRegistry.getInstrumentation().context
 
-  public override val retained = super.retained
   override val database = Room.inMemoryDatabaseBuilder(context, RequestDatabase::class.java).build()
 
   public final override var coroutineScope = super.coroutineScope
