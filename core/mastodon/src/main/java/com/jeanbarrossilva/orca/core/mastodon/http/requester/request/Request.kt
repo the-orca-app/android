@@ -3,10 +3,12 @@ package com.jeanbarrossilva.orca.core.mastodon.http.requester.request
 import com.jeanbarrossilva.orca.core.mastodon.http.requester.Requester
 import io.ktor.http.Headers
 import io.ktor.http.Parameters
-import io.ktor.http.content.PartData
 
 /** Anatomy of an HTTP request made by the [Requester]. */
 sealed class Request {
+  /** Name of the method to which this [Request] refers to. */
+  internal abstract val methodName: String
+
   /** Path to which this [Request] was made. */
   internal abstract val route: String
 
@@ -22,8 +24,15 @@ sealed class Request {
     override val parameters: Parameters,
     override val headers: Headers
   ) : Request() {
+    override val methodName = METHOD_NAME
+
     override suspend fun sendTo(requester: Requester) {
       requester.get(route, parameters, headers)
+    }
+
+    companion object {
+      /** Name of the HTTP method of a [Get]. */
+      const val METHOD_NAME = "GET"
     }
   }
 
@@ -35,11 +44,17 @@ sealed class Request {
   internal data class Post(
     override val route: String,
     override val parameters: Parameters,
-    override val headers: Headers,
-    val form: List<PartData>
+    override val headers: Headers
   ) : Request() {
+    override val methodName = METHOD_NAME
+
     override suspend fun sendTo(requester: Requester) {
-      requester.post(route, parameters, headers, form)
+      requester.post(route, parameters, headers)
+    }
+
+    companion object {
+      /** Name of the HTTP method of a [Post]. */
+      const val METHOD_NAME = "POST"
     }
   }
 
@@ -49,4 +64,9 @@ sealed class Request {
    * @param requester [Requester] to which this [Request] will be sent.
    */
   internal abstract suspend fun sendTo(requester: Requester)
+
+  /** Converts this [Request] into a [RequestEntity]. */
+  internal fun toRequestEntity(): RequestEntity {
+    return RequestEntity(methodName, route, "$parameters", "$headers")
+  }
 }
