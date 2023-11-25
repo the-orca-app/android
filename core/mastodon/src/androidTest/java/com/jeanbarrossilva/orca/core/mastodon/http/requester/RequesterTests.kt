@@ -84,11 +84,12 @@ internal class RequesterTests {
   fun cancels() {
     runTest(@OptIn(ExperimentalCoroutinesApi::class) UnconfinedTestDispatcher()) {
       with(requesterRule.on(coroutineContext).delayedBy(Duration.INFINITE).requester) {
-        launch { get("api/v1") }
+        val indefinitelyOngoingJob = launch { get("api/v1") }
         launch { post("api/v2") }
         cancel("api/v2")
         assertThat(isRequestOngoing("api/v1")).isTrue()
         assertThat(isRequestOngoing("api/v2")).isFalse()
+        indefinitelyOngoingJob.cancel()
       }
     }
   }

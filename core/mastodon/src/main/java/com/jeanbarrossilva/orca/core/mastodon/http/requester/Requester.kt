@@ -19,7 +19,6 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
-import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 
 /**
@@ -107,8 +106,8 @@ abstract class Requester internal constructor() {
    * @param route Path to which the request was sent.
    */
   fun cancel(route: String) {
-    if (route in ongoing) {
-      coroutineScope.coroutineContext.job.cancel(UnretainableCancellationException())
+    ongoing[route]?.let {
+      it.cancel(UnretainableCancellationException())
       ongoing.remove(route)
     }
   }
