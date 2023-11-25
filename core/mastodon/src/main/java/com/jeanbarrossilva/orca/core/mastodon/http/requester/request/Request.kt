@@ -37,11 +37,7 @@ sealed class Request {
     }
   }
 
-  /**
-   * POST HTTP request.
-   *
-   * @param form Multipart form data.
-   */
+  /** POST HTTP request. */
   internal data class Post(
     override val route: String,
     override val parameters: Parameters,
