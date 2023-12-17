@@ -1,0 +1,239 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Injector</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Orca
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":std:injector:dokkaHtmlPartial/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="injector::com.jeanbarrossilva.orca.std.injector/Injector///PointingToDeclaration//1740263613">
+  <div class="breadcrumbs"><a href="../../index.html">injector</a><span class="delimiter">/</span><a href="../index.html">com.jeanbarrossilva.orca.std.injector</a><span class="delimiter">/</span><span class="current">Injector</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Injector</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">Injector</a> : <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a></div><p class="paragraph"><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a> that enables global <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a> and dependency injection.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1183518471%2FClasslikes%2F1740263613" anchor-label="ModuleNotRegisteredException" id="-1183518471%2FClasslikes%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-module-not-registered-exception/index.html"><span>Module</span><wbr><span>Not</span><wbr><span>Registered</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1183518471%2FClasslikes%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-module-not-registered-exception/index.html">ModuleNotRegisteredException</a> : <a href="https://docs.oracle.com/javase/8/docs/api/java/util/NoSuchElementException.html">NoSuchElementException</a></div><div class="brief "><p class="paragraph"><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-no-such-element-exception/index.html">NoSuchElementException</a> thrown if a <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a> that hasn't been registered is requested to be obtained or unregistered.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-88487719%2FClasslikes%2F1740263613" anchor-label="SelfRegistrationException" id="-88487719%2FClasslikes%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-self-registration-exception/index.html"><span>Self</span><wbr><span>Registration</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-88487719%2FClasslikes%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-self-registration-exception/index.html">SelfRegistrationException</a> : <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></div><div class="brief "><p class="paragraph"><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-argument-exception/index.html">IllegalArgumentException</a> thrown if the <a href="index.html">Injector</a> registers itself.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1928585640%2FClasslikes%2F1740263613" anchor-label="SelfRetrievalException" id="-1928585640%2FClasslikes%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-self-retrieval-exception/index.html"><span>Self</span><wbr><span>Retrieval</span><wbr><span><span>Exception</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1928585640%2FClasslikes%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-self-retrieval-exception/index.html">SelfRetrievalException</a> : <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></div><div class="brief "><p class="paragraph"><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-argument-exception/index.html">IllegalArgumentException</a> thrown if the <a href="index.html">Injector</a> gets itself.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1809152265%2FFunctions%2F1740263613" anchor-label="clear" id="-1809152265%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/clear.html"><span><span>clear</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1809152265%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/clear.html"><span class="token function">clear</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Removes all injected dependencies.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1619860288%2FFunctions%2F1740263613" anchor-label="from" id="-1619860288%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="from.html"><span><span>from</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1619860288%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="from.html">T</a><span class="token operator"> : </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a><span class="token operator">&gt; </span><a href="from.html"><span class="token function">from</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="from.html">T</a></div><div class="brief "><p class="paragraph">Gets the registered <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a> of type <a href="from.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="182962126%2FFunctions%2F1740263613" anchor-label="get" id="182962126%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/get.html"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="182962126%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/get.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/get.html"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/get.html">T</a></div><div class="brief "><p class="paragraph">Obtains the injected dependency whose type is <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/get.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-309462833%2FFunctions%2F1740263613" anchor-label="inject" id="-309462833%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/inject.html"><span><span>inject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-309462833%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/inject.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/inject.html"><span class="token function">inject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">noinline </span>injection<span class="token operator">: </span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/inject.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Injects the dependency returned by the <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/inject.html">injection</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="498469122%2FFunctions%2F1740263613" anchor-label="lazy" id="498469122%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/lazy.html"><span><span>lazy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="498469122%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/lazy.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/lazy.html"><span class="token function">lazy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-lazy/index.html">Lazy</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/lazy.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lazily obtains the injected dependency whose type is <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/lazy.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="573617038%2FFunctions%2F1740263613" anchor-label="register" id="573617038%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register.html"><span><span>register</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="573617038%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="register.html">T</a><span class="token operator"> : </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a><span class="token operator">&gt; </span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">module<span class="token operator">: </span><a href="register.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Registers the given <a href="register.html">module</a>.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="register.html">B</a><span class="token operator"> : </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="register.html">A</a><span class="token operator"> : </span><a href="register.html">B</a><span class="token operator">&gt; </span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">binding<span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.std.injector.module.binding/-binding/index.html">Binding</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="register.html">B</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="register.html">A</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Registers the given <a href="register.html">binding</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-352138578%2FFunctions%2F1740263613" anchor-label="unregister" id="-352138578%2FFunctions%2F1740263613" data-filterable-set=":std:injector:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:injector:dokkaHtmlPartial/main" data-filterable-set=":std:injector:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unregister.html"><span><span>unregister</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-352138578%2FFunctions%2F1740263613"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:injector:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="unregister.html">T</a><span class="token operator"> : </span><a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a><span class="token operator">&gt; </span><a href="unregister.html"><span class="token function">unregister</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Unregisters the given <a href="../../com.jeanbarrossilva.orca.std.injector.module/-module/index.html">Module</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

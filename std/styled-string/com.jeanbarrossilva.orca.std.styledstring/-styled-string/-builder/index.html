@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Builder</title>
+<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../../index.html">
+                            Orca
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":std:styled-string:dokkaHtmlPartial/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="styled-string::com.jeanbarrossilva.orca.std.styledstring/StyledString.Builder///PointingToDeclaration//-1934089050">
+  <div class="breadcrumbs"><a href="../../../index.html">styled-string</a><span class="delimiter">/</span><a href="../../index.html">com.jeanbarrossilva.orca.std.styledstring</a><span class="delimiter">/</span><a href="../index.html">StyledString</a><span class="delimiter">/</span><span class="current">Builder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Builder</a></div><p class="paragraph">Allows text and <a href="../../../com.jeanbarrossilva.orca.std.styledstring.style/-style/index.html">Style</a>s to be appended and for a <a href="../index.html">StyledString</a> to be built.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-762971803%2FClasslikes%2F-1934089050" anchor-label="Appender" id="-762971803%2FClasslikes%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-appender/index.html"><span><span>Appender</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-762971803%2FClasslikes%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inner </span><span class="token keyword">class </span><a href="-appender/index.html">Appender</a></div><div class="brief "><p class="paragraph">Appends text with the result of <a href="../../../../../std/styled-string/com.jeanbarrossilva.orca.std.styledstring/-styled-string/-builder/-appender/style.html">style</a> applied to it through <a href="../../../../../std/styled-string/com.jeanbarrossilva.orca.std.styledstring/-styled-string/-builder/append.html">append</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1721430%2FFunctions%2F-1934089050" anchor-label="bold" id="1721430%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bold.html"><span><span>bold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1721430%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="bold.html"><span class="token function">bold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">appendix<span class="token operator">: </span><span class="token keyword"></span><a href="-appender/index.html">StyledString.Builder.Appender</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Emboldens the text to be appended.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1681710895%2FFunctions%2F-1934089050" anchor-label="hashtag" id="-1681710895%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hashtag.html"><span><span>hashtag</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1681710895%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="hashtag.html"><span class="token function">hashtag</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">appendix<span class="token operator">: </span><span class="token keyword"></span><a href="-appender/index.html">StyledString.Builder.Appender</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Turns the text to be appended into a hashtag.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-854326975%2FFunctions%2F-1934089050" anchor-label="italic" id="-854326975%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="italic.html"><span><span>italic</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-854326975%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="italic.html"><span class="token function">italic</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">appendix<span class="token operator">: </span><span class="token keyword"></span><a href="-appender/index.html">StyledString.Builder.Appender</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Italicizes the text to be appended.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1878471852%2FFunctions%2F-1934089050" anchor-label="link" id="-1878471852%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="link.html"><span><span>link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1878471852%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="link.html"><span class="token function">link</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/net/URL.html">URL</a><span class="token punctuation">, </span></span><span class="parameter ">appendix<span class="token operator">: </span><span class="token keyword"></span><a href="-appender/index.html">StyledString.Builder.Appender</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Links the text to be appended to the <a href="link.html">url</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-521101712%2FFunctions%2F-1934089050" anchor-label="mention" id="-521101712%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mention.html"><span><span>mention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-521101712%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="mention.html"><span class="token function">mention</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/net/URL.html">URL</a><span class="token punctuation">, </span></span><span class="parameter ">appendix<span class="token operator">: </span><span class="token keyword"></span><a href="-appender/index.html">StyledString.Builder.Appender</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Turns the text to be appended into a mention.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1426830329%2FFunctions%2F-1934089050" anchor-label="unaryPlus" id="1426830329%2FFunctions%2F-1934089050" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":std:styled-string:dokkaHtmlPartial/main" data-filterable-set=":std:styled-string:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unary-plus.html"><span>unary</span><wbr><span><span>Plus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1426830329%2FFunctions%2F-1934089050"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":std:styled-string:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char/index.html">Char</a><span class="token punctuation">.</span><a href="unary-plus.html"><span class="token function">unaryPlus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Appends this <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char/index.html">Char</a> to the <a href="../../../../../std/styled-string/com.jeanbarrossilva.orca.std.styledstring/-styled-string/text.html">text</a> of the <a href="../index.html">StyledString</a> being built.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">.</span><a href="unary-plus.html"><span class="token function">unaryPlus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Appends this <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> to the <a href="../../../../../std/styled-string/com.jeanbarrossilva.orca.std.styledstring/-styled-string/text.html">text</a> of the <a href="../index.html">StyledString</a> being built.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

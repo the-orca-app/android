@@ -1,0 +1,205 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MastodonPost</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Orca
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:mastodon:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="mastodon::com.jeanbarrossilva.orca.core.mastodon.feed.profile.post/MastodonPost///PointingToDeclaration//1898315457">
+  <div class="breadcrumbs"><a href="../../index.html">mastodon</a><span class="delimiter">/</span><a href="../index.html">com.jeanbarrossilva.orca.core.mastodon.feed.profile.post</a><span class="delimiter">/</span><span class="current">MastodonPost</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Mastodon</span><wbr><span><span>Post</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">MastodonPost</a> : <a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post/-post/index.html">Post</a></div><p class="paragraph"><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post/-post/index.html">Post</a> whose actions communicate with the Mastodon API.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>image</span><wbr><span>Loader</span><wbr><span><span>Provider</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/-provider/index.html">ImageLoader.Provider</a> that provides the <a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/index.html">ImageLoader</a> by which <a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image/index.html">Image</a>s will be loaded from a <a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a>.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>comment</span><wbr><span><span>Count</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Amount of comments that this <a href="index.html">MastodonPost</a> has received.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>favorite</span><wbr><span><span>Count</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Amount of times that this <a href="index.html">MastodonPost</a> has been marked as favorite.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>reblog</span><wbr><span><span>Count</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Amount of times that this <a href="index.html">MastodonPost</a> has been reblogged.</p></div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1614370972%2FProperties%2F1898315457" anchor-label="author" id="-1614370972%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="author.html"><span><span>author</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1614370972%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="author.html">author</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post/-author/index.html">Author</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-946420308%2FProperties%2F1898315457" anchor-label="comment" id="-946420308%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="comment.html"><span><span>comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-946420308%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="comment.html">comment</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.stat/-stat/index.html">Stat</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post/-post/index.html">Post</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-378359598%2FProperties%2F1898315457" anchor-label="content" id="-378359598%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="content.html"><span><span>content</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-378359598%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="content.html">content</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.content/-content/index.html">Content</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1742727181%2FProperties%2F1898315457" anchor-label="favorite" id="-1742727181%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="favorite.html"><span><span>favorite</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1742727181%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="favorite.html">favorite</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.stat.toggleable/-toggleable-stat/index.html">ToggleableStat</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile/-profile/index.html">Profile</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1932990164%2FProperties%2F1898315457" anchor-label="id" id="1932990164%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="id.html"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1932990164%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="id.html">id</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1176321572%2FProperties%2F1898315457" anchor-label="publicationDateTime" id="1176321572%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="publication-date-time.html"><span>publication</span><wbr><span>Date</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1176321572%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="publication-date-time.html">publicationDateTime</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/time/ZonedDateTime.html">ZonedDateTime</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-773864292%2FProperties%2F1898315457" anchor-label="repost" id="-773864292%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="repost.html"><span><span>repost</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-773864292%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="repost.html">repost</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.stat.toggleable/-toggleable-stat/index.html">ToggleableStat</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile/-profile/index.html">Profile</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1336875108%2FProperties%2F1898315457" anchor-label="url" id="-1336875108%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="url.html"><span><span>url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1336875108%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="url.html">url</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

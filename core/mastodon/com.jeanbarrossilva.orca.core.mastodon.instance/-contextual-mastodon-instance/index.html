@@ -1,0 +1,224 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ContextualMastodonInstance</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Orca
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:mastodon:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="mastodon::com.jeanbarrossilva.orca.core.mastodon.instance/ContextualMastodonInstance///PointingToDeclaration//1898315457">
+  <div class="breadcrumbs"><a href="../../index.html">mastodon</a><span class="delimiter">/</span><a href="../index.html">com.jeanbarrossilva.orca.core.mastodon.instance</a><span class="delimiter">/</span><span class="current">ContextualMastodonInstance</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Contextual</span><wbr><span>Mastodon</span><wbr><span><span>Instance</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ContextualMastodonInstance</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">domain<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.instance.domain/-domain/index.html">Domain</a><span class="token punctuation">, </span></span><span class="parameter ">authorizer<span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authorization/-mastodon-authorizer/index.html">MastodonAuthorizer</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>authenticator<span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token punctuation">, </span></span><span class="parameter ">actorProvider<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.auth.actor/-actor-provider/index.html">ActorProvider</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>authenticationLock<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.auth/-authentication-lock/index.html">AuthenticationLock</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">termMuter<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.content/-term-muter/index.html">TermMuter</a><span class="token punctuation">, </span></span><span class="parameter ">imageLoaderProvider<span class="token operator">: </span><a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/-provider/index.html">ImageLoader.Provider</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../-mastodon-instance/index.html">MastodonInstance</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authorization/-mastodon-authorizer/index.html">MastodonAuthorizer</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token operator">&gt; </span></div><p class="paragraph"><a href="../-mastodon-instance/index.html">MastodonInstance</a> that authorizes the user and caches all fetched structures through the given <a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a>.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>context</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a> with which the <a href="authenticator.html">authenticator</a> will be created.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>domain</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Unique identifier of the server.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>authorizer</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authorization/-mastodon-authorizer/index.html">MastodonAuthorizer</a> by which the user will be authorized.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>actor</span><wbr><span><span>Provider</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="../../../../core/com.jeanbarrossilva.orca.core.auth.actor/-actor-provider/index.html">ActorProvider</a> that will provide <a href="../../../../core/com.jeanbarrossilva.orca.core.auth.actor/-actor/index.html">Actor</a>s to the <a href="authenticator.html">authenticator</a>, the <a href="authentication-lock.html">authenticationLock</a> and the <a href="feed-provider.html">feedProvider</a>.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>term</span><wbr><span><span>Muter</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.content/-term-muter/index.html">TermMuter</a> by which <a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post/-post/index.html">Post</a>s with muted terms will be filtered out.</p></div></div></div></div><div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>image</span><wbr><span>Loader</span><wbr><span><span>Provider</span></span></u></div></span></div><div><div class="title"><p class="paragraph"><a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/-provider/index.html">ImageLoader.Provider</a> that provides the <a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/index.html">ImageLoader</a> by which <a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image/index.html">Image</a>s will be loaded.</p></div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1373724179%2FConstructors%2F1898315457" anchor-label="ContextualMastodonInstance" id="-1373724179%2FConstructors%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-contextual-mastodon-instance.html"><span>Contextual</span><wbr><span>Mastodon</span><wbr><span><span>Instance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1373724179%2FConstructors%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">domain<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.instance.domain/-domain/index.html">Domain</a><span class="token punctuation">, </span></span><span class="parameter ">authorizer<span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authorization/-mastodon-authorizer/index.html">MastodonAuthorizer</a><span class="token punctuation">, </span></span><span class="parameter ">authenticator<span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token punctuation">, </span></span><span class="parameter ">actorProvider<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.auth.actor/-actor-provider/index.html">ActorProvider</a><span class="token punctuation">, </span></span><span class="parameter ">authenticationLock<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.auth/-authentication-lock/index.html">AuthenticationLock</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">termMuter<span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.feed.profile.post.content/-term-muter/index.html">TermMuter</a><span class="token punctuation">, </span></span><span class="parameter ">imageLoaderProvider<span class="token operator">: </span><a href="../../../../std/image-loader/com.jeanbarrossilva.orca.std.imageloader/-image-loader/-provider/index.html">ImageLoader.Provider</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1835304938%2FProperties%2F1898315457" anchor-label="authenticationLock" id="-1835304938%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="authentication-lock.html"><span>authentication</span><wbr><span><span>Lock</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1835304938%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="authentication-lock.html">authenticationLock</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.auth/-authentication-lock/index.html">AuthenticationLock</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-158835346%2FProperties%2F1898315457" anchor-label="authenticator" id="-158835346%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="authenticator.html"><span><span>authenticator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-158835346%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="authenticator.html">authenticator</a><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.auth.authentication/-mastodon-authenticator/index.html">MastodonAuthenticator</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="157317277%2FProperties%2F1898315457" anchor-label="client" id="157317277%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-mastodon-instance/client.html"><span><span>client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="157317277%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-mastodon-instance/client.html">client</a><span class="token operator">: </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span></div><div class="brief "><p class="paragraph"><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span> by which <span data-unresolved-link="io.ktor.client.request/HttpRequest///PointingToDeclaration/">HttpRequest</span>s will be sent.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-660770364%2FProperties%2F1898315457" anchor-label="domain" id="-660770364%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-mastodon-instance/domain.html"><span><span>domain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-660770364%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">override </span><span class="token keyword">val </span><a href="../-mastodon-instance/domain.html">domain</a><span class="token operator">: </span><a href="../../../../core/com.jeanbarrossilva.orca.core.instance.domain/-domain/index.html">Domain</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="38093994%2FProperties%2F1898315457" anchor-label="feedProvider" id="38093994%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="feed-provider.html"><span>feed</span><wbr><span><span>Provider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="38093994%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="feed-provider.html">feedProvider</a><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.feed/-mastodon-feed-provider/index.html">MastodonFeedProvider</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1021150744%2FProperties%2F1898315457" anchor-label="postProvider" id="-1021150744%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="post-provider.html"><span>post</span><wbr><span><span>Provider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1021150744%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="post-provider.html">postProvider</a><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.feed.profile.post/-mastodon-post-provider/index.html">MastodonPostProvider</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-791894777%2FProperties%2F1898315457" anchor-label="profileProvider" id="-791894777%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="profile-provider.html"><span>profile</span><wbr><span><span>Provider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-791894777%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="profile-provider.html">profileProvider</a><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.feed.profile/-mastodon-profile-provider/index.html">MastodonProfileProvider</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="64469795%2FProperties%2F1898315457" anchor-label="profileSearcher" id="64469795%2FProperties%2F1898315457" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":core:mastodon:dokkaHtmlPartial/release" data-filterable-set=":core:mastodon:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="profile-searcher.html"><span>profile</span><wbr><span><span>Searcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="64469795%2FProperties%2F1898315457"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:mastodon:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="profile-searcher.html">profileSearcher</a><span class="token operator">: </span><a href="../../com.jeanbarrossilva.orca.core.mastodon.feed.profile.search/-mastodon-profile-searcher/index.html">MastodonProfileSearcher</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
