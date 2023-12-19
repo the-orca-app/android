@@ -131,6 +131,7 @@ com.jeanbarrossilva.orca.platform.ui.core
 com.jeanbarrossilva.orca.platform.ui.core.activity
 com.jeanbarrossilva.orca.platform.ui.core.composable
 com.jeanbarrossilva.orca.platform.ui.core.context
+com.jeanbarrossilva.orca.platform.ui.core.image
 com.jeanbarrossilva.orca.platform.ui.core.lifecycle
 com.jeanbarrossilva.orca.platform.ui.core.lifecycle.state
 com.jeanbarrossilva.orca.platform.ui.core.navigation
@@ -156,10 +157,10 @@ com.jeanbarrossilva.orca.std.buildable
 module:buildable-processor
 com.jeanbarrossilva.orca.std.buildable.processor
 com.jeanbarrossilva.orca.std.buildable.processor.grammar
-module:image-loader
-com.jeanbarrossilva.orca.std.imageloader
-module:image-loader-test
-com.jeanbarrossilva.orca.std.imageloader.test
+module:image
+com.jeanbarrossilva.orca.std.image
+module:image-test
+com.jeanbarrossilva.orca.std.image.test
 module:injector
 com.jeanbarrossilva.orca.std.injector
 com.jeanbarrossilva.orca.std.injector.module
@@ -175,8 +176,5 @@ com.jeanbarrossilva.orca.std.styledstring.style.type
 module:term-muting
 com.jeanbarrossilva.orca.feature.settings.termmuting
 module:compose
-com.jeanbarrossilva.orca.std.imageloader.compose
-com.jeanbarrossilva.orca.std.imageloader.compose.coil
-module:local
-com.jeanbarrossilva.orca.std.imageloader.local
-com.jeanbarrossilva.orca.std.imageloader.local.drawable
+com.jeanbarrossilva.orca.std.image.compose
+com.jeanbarrossilva.orca.std.image.compose.async
