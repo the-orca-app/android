@@ -112,6 +112,8 @@ module:autos-test
 com.jeanbarrossilva.orca.platform.autos.test.kit.input.text
 module:cache
 com.jeanbarrossilva.orca.platform.cache
+module:intents
+com.jeanbarrossilva.orca.ext.intents
 module:ui
 com.jeanbarrossilva.orca.platform.ui
 com.jeanbarrossilva.orca.platform.ui.component.avatar
