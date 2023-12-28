@@ -114,6 +114,9 @@ module:cache
 com.jeanbarrossilva.orca.platform.cache
 module:intents
 com.jeanbarrossilva.orca.ext.intents
+module:testing
+com.jeanbarrossilva.orca.platform.testing
+com.jeanbarrossilva.orca.platform.testing.screen
 module:ui
 com.jeanbarrossilva.orca.platform.ui
 com.jeanbarrossilva.orca.platform.ui.component.avatar
