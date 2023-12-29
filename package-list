@@ -1,6 +1,8 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 
+module:app
+com.jeanbarrossilva.orca.app
 module:core
 com.jeanbarrossilva.orca.core.auth
 com.jeanbarrossilva.orca.core.auth.actor
