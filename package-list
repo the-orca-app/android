@@ -75,6 +75,9 @@ module:feed
 com.jeanbarrossilva.orca.feature.feed
 module:gallery
 com.jeanbarrossilva.orca.feature.gallery
+com.jeanbarrossilva.orca.feature.gallery.ui
+module:gallery-test
+com.jeanbarrossilva.orca.feature.gallery.test.ui
 module:post-details
 com.jeanbarrossilva.orca.feature.postdetails
 module:profile-details
