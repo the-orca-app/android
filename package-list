@@ -66,9 +66,13 @@ module:shared-preferences
 com.jeanbarrossilva.orca.core.sharedpreferences.actor
 com.jeanbarrossilva.orca.core.sharedpreferences.feed.profile.post.content
 module:coroutines
+com.jeanbarrossilva.orca.ext.coroutines
 com.jeanbarrossilva.orca.ext.coroutines.notifier
 module:processing
 com.jeanbarrossilva.orca.ext.processing
+module:testing
+com.jeanbarrossilva.orca.platform.testing
+com.jeanbarrossilva.orca.platform.testing.screen
 module:composer
 com.jeanbarrossilva.orca.feature.composer
 module:feed
@@ -119,9 +123,6 @@ module:cache
 com.jeanbarrossilva.orca.platform.cache
 module:intents
 com.jeanbarrossilva.orca.ext.intents
-module:testing
-com.jeanbarrossilva.orca.platform.testing
-com.jeanbarrossilva.orca.platform.testing.screen
 module:ui
 com.jeanbarrossilva.orca.platform.ui
 com.jeanbarrossilva.orca.platform.ui.component.avatar
