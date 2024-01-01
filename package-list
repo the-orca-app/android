@@ -57,7 +57,6 @@ module:sample-test
 com.jeanbarrossilva.orca.core.sample.test.feed.profile
 com.jeanbarrossilva.orca.core.sample.test.feed.profile.post
 com.jeanbarrossilva.orca.core.sample.test.feed.profile.post.content.highlight
-com.jeanbarrossilva.orca.core.sample.test.feed.profile.post.repost
 com.jeanbarrossilva.orca.core.sample.test.feed.profile.search
 com.jeanbarrossilva.orca.core.sample.test.feed.profile.type
 com.jeanbarrossilva.orca.core.sample.test.image
